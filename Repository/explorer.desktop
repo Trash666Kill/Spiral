@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Name=Explorer
+Comment=File Explorer
+Exec=/usr/bin/caja
+Icon=/usr/share/icons/Qogir-dark/48/apps/file-manager.svg
+Terminal=false
+Type=Application
+Categories=System;
+StartupNotify=false
+NoDisplay=false
+Name[en_US]=Explorer

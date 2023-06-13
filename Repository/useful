@@ -1,0 +1,148 @@
+Drive information
+$ lsblk
+# blockdev --report
+# blockdev --getbsz /dev/sda2
+# smartctl -a /dev/sdb
+# smartctl -a /dev/sdb | grep -i rotation
+# smartctl -a /dev/sdb | grep -i device
+# cryptsetup luksDump /dev/sda3
+# hdparm -t /dev/sda (benchmark read/write)
+
+ClamAV
+# systemctl stop clamav-freshclam
+# frashclam
+# systemctl restart clamav-freshclam
+# echo 'X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*' > clamav-testfile
+# clamscan -r -i clamav-testfile
+# clamscan --recursive --infected --move=/root/.isolation /home/emperor
+# clamscan --recursive --infected --exclude-dir='^/sys|^/dev' /
+# clamscan --recursive --infected --remove /home/emperor
+
+FWUPD
+# fwupdmgr get-devices
+# fwupdmgr refresh
+# fwupdmgr get-updates
+# fwupdmgr update
+
+BTRFS and qemu tools
+# btrfsck
+# btrfs check -b --repair /dev/mapper/A_crypt 
+# btrfsck /dev/sda
+# btrfsck --repair /dev/sda3
+
+Resize
+# qemu-img resize Music.img +30G *Sempre na ORIGEM
+# cfdisk /dev/vdh
+# btrfs filesystem resize +50G /mnt/VContainers/Music
+or
+# btrfs filesystem resize max /mnt/VContainers/Music
+# qemu-img resize --shrink data.img -15G
+# qemu-img check data.qcow
+# qemu-img check -r all data.qcow
+# qemu-img create -f qcow2 Violet.qcow2 2G
+
+Virsh
+# virsh autostart VM
+# virsh autostart VM --disable
+# virsh domrename <VM> <new-name>
+# virsh undefine VM
+
+Ansible
+$ ansible VMs -k -m ping
+$ ansible VMs -k -m shell -a "uname -a"
+$ ansible VMs -kK -m shell -a "systemctl status zabbix-agent"
+$ ansible-playbook /etc/ansible/playbook/upvms.yml -kK
+* If the ssh keys are properly configured, it is not necessary to use "-k", it is worth noting that, if the command requires superuser elevation, it is necessary to add "-K".
+
+Restoring or backing up drives and partitions
+# dd if=/dev/sda of=/dev/sdb bs=4096 status=progress
+# dd if=/dev/sda of=/mnt/Temp/Swamp.img bs=4096 status=progress
+# dd if=Mercury-L2.img of=/dev/sda bs=4096 status=progress
+# dd if=/dev/sda | gzip >/mnt/Temp/Swamp.img.gz
+# gzip -dc /Mercury-L2.img.gz | dd of=/dev/sda
+
+Tar/Gzip
+Compact/compress = tar -cvzf file.tar.gz / gzip -c -9 VM.img > VM.img.gz
+Unzip = tar -vzxf file.tar.gz / gzip -d -f VM.img.gz / pigz -d -p4 VM.img.gz
+
+Hardware informartion
+$ cat /proc/mounts
+$ cat /proc/cpuinfo
+$ cat /proc/meminfo
+$ watch "grep 'cpu MHz' /proc/cpuinfo"
+
+System informations
+# dmesg -w
+# systemctl get-default
+# systemctl list-unit-files
+# journalctl -f or journalctl --since=today
+$ hostnamectl
+$ timedatectl
+$ timedatectl list-timezones
+# timedatectl set-timezone America/Chicago
+$ lsb_release -a
+$ apt list --installed
+$ apt-cache show package
+
+Other utilities
+# setxkbmap -model abnt2 -layout br
+$ uuidgen
+$ pwgen
+Alternative touchpad configuration
+# mkdir /etc/X11/xorg.conf.d
+# cp /.temp/Update/Others/post_install/40-libinput.conf /etc/X11/xorg.conf.d
+$ xrandr - xrandr -s 6
+# find / -type f -name "king.ovpn"
+$ tree /mnt/ > file
+$ screen
+$ Ctrl + A + D
+$ screen -list
+$ screen -r 3626 
+$ ls | wc -l * Count total files in directory.
+
+Network
+$ netstat -tn 2>/dev/null
+$ testparm
+# smbstatus
+# ethtool enp1s0
+# tcpdump -ni enp1s0 udp port 53
+$ iperf -s
+$ iperf -c server -t20
+$ geoiplookup google.com
+# netstat -tulpna or watch netstat -tulpna
+# netstat -an | grep ESTABLISHED | wc -l
+# tcpdump -ni enp1s0 udp port 53
+
+Swap
+# swapon --show
+Deactivate
+# swapoff -v /swapfile
+# rm /swapfile
+
+Create encrypted drive or partition
+# cryptsetup -y --cipher aes-xts-plain64 --key-size 512 --hash sha512 luksFormat /dev/sda3
+# dd if=/dev/random bs=32 count=1 of=/root/.crypt/Container-A.key
+# chmod 600 /root/.crypt/Container-A.key
+# cryptsetup luksAddKey /dev/disk/by-uuid/898221be-388d-4b20-bfdc-74759afb8dce /root/.crypt/Container-A.key
+# cryptsetup luksOpen /dev/disk/by-uuid/898221be-388d-4b20-bfdc-74759afb8dce Container-A_crypt --key-file /root/.crypt/Container-A.key
+# cryptsetup --verbose open --test-passphrase /dev/sda3
+
+Zerofill
+# wipefs /dev/sda * List entries
+# wipefs --all --force /dev/sda * Clean entries
+# shred -v /dev/sda
+# shred -n 2 -z -v /dev/sda
+
+Stress hardware
+# stress --cpu  4 --timeout 20
+
+Adding and removing sudo permissions on users
+# deluser king sudo
+# /sbin/adduser emperor
+# /sbin/usermod -aG sudo emperor, su - emperor, sudo apt update
+
+Openssh
+$ sshfs -p 28 emperor@192.168.5.11:/mnt/Container-A/ /mnt/Container-A
+$ sshfs -p 28 emperor@192.168.5.11:/mnt/Container-A/ /mnt/Container-A -o allow_other -o ro
+$ ssh -C -X emperor@192.168.5.11
+# ssh -f -N -T -R 2222:localhost:22 -p 4634 emperor@strychnine.duckdns.org &
