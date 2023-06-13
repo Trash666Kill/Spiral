@@ -70,8 +70,6 @@ cp -v strychnine.sh /etc/scripts/tunnels
 chmod +x /etc/scripts/tunnels/strychnine.sh
 cp -v enp1s0.sh /etc/scripts/routes
 chmod +x /etc/scripts/routes/enp1s0.sh
-cp -v standby.sh /etc/scripts/others
-chmod +x /etc/scripts/others/standby.sh
 cp -v rc.local /etc
 chmod 755 /etc/rc.local
 rm -v /etc/network/interfaces
