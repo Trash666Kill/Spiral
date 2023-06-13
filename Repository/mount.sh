@@ -16,4 +16,6 @@ systemctl restart zabbix-agent
 #
 # Virtual machines
 # VM02
+sleep 60
 virsh start VM02
+#
