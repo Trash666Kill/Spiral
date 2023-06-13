@@ -14,7 +14,7 @@ echo "1"
 apt install sudo cryptsetup vim sshfs systemd-timesyncd xz-utils python3-apt screen -y
 echo "2"
 apt install htop iotop stress hdparm tree zabbix-agent -y
-echo "4"
+echo "3"
 apt install curl wget net-tools tcpdump traceroute nmap telnet iperf ethtool geoip-bin speedtest-cli nload autossh -y
 #Directories
 echo "**CREATING DIRECTORIES**"
