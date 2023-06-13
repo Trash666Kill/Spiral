@@ -2,7 +2,7 @@ source /etc/network/interfaces.d/*
 
 # The loopback network interface
 auto lo
-  iface lo inet loopback
+iface lo inet loopback
 
 # Virtual network interface
 allow-hotplug enp1s0
