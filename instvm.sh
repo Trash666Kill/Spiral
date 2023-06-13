@@ -57,8 +57,6 @@ cp -v rc.local /etc
 chmod 755 /etc/rc.local
 rm -v /etc/network/interfaces
 cp -v interfaces /etc/network
-rm -v /etc/samba/smb.conf
-cp -v smb.conf /etc/samba
 rm -v /etc/ssh/sshd_config
 cp -v sshd_config /etc/ssh
 rm -v /etc/motd
