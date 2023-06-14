@@ -9,7 +9,7 @@ apt update && apt upgrade -y
 #Base packages*
 echo "**INSTALLING BASE PACKAGES**"
 echo "1"
-apt install sudo cryptsetup vim sshfs systemd-timesyncd xz-utils python3-apt screen -y
+apt install sudo cryptsetup vim sshfs systemd-timesyncd unzip xz-utils python3-apt screen -y
 echo "2"
 apt install htop iotop stress hdparm tree zabbix-agent -y
 echo "3"
