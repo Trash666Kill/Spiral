@@ -81,8 +81,6 @@ rm -v /root/.bash_history
 #End
 echo "**END**"
 #Manual settings
-echo "1 - Adjust network nics according to the environment
-2 - Add zabbix server ip address in /etc/zabbix/zabbix_agentd.conf 
-3 - Manually configure samba users and their respective passwords"
+echo "1 - Add zabbix server ip address in /etc/zabbix/zabbix_agentd.conf"
 su - emperor
 #
