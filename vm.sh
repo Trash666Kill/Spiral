@@ -73,8 +73,6 @@ chmod 600 /root/.ssh/authorized_keys
 #Cleaning up
 echo "**CLEANING UP**"
 apt autoremove -y
-rm -v /home/emperor/.bash_history
-rm -v /root/.bash_history
 
 #End
 echo "**END**"
