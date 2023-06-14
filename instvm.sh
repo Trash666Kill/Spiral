@@ -1,8 +1,6 @@
 #!/bin/bash
 #
-#Non-free repo
 cd /Spiral-bookworm/Repository/
-echo "**ADDING NON-FREE REPOSITORIES**"
 rm -v /etc/apt/sources.list
 cp -v sources.list /etc/apt/
 #Update and Upgrade
