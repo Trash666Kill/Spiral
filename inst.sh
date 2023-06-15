@@ -62,10 +62,10 @@ systemctl disable smbd
 systemctl disable zabbix-agent
 cp -v startup.sh /etc/scripts/startup.sh
 chmod +x /etc/scripts/startup.sh
-cp -v avscan.sh /etc/scripts/Scheduled
-chmod +x /etc/scripts/Scheduled/avscan.sh
-cp -v sync.sh /etc/scripts/Scheduled
-chmod +x /etc/scripts/Scheduled/sync.sh
+cp -v avscan.sh /etc/scripts/scheduled
+chmod +x /etc/scripts/scheduled/avscan.sh
+cp -v sync.sh /etc/scripts/scheduled
+chmod +x /etc/scripts/scheduled/sync.sh
 cp -v rc.local /etc
 chmod 755 /etc/rc.local
 rm -v /etc/network/interfaces
