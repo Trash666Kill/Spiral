@@ -15,7 +15,7 @@ apt install sudo cryptsetup smartmontools vim sshfs systemd-timesyncd unzip xz-u
 echo "2"
 apt install lm-sensors htop stress hdparm x11-xkb-utils bc fwupd tree zabbix-agent -y
 echo "3"
-apt install pm-utils acpid -y
+apt install pm-utils acpid cpulimit -y
 echo "4"
 apt install curl wget samba net-tools tcpdump traceroute nmap telnet iperf ethtool geoip-bin speedtest-cli nload autossh -y
 echo "5"
