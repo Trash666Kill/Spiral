@@ -16,11 +16,7 @@ echo "3"
 apt install curl wget net-tools tcpdump traceroute nmap telnet iperf ethtool geoip-bin speedtest-cli nload autossh -y
 #Directories
 echo "**CREATING DIRECTORIES**"
-mkdir -pv /etc/scripts/interfaces
-mkdir -v /etc/scripts/mount
-mkdir -v /etc/scripts/tunnels
-mkdir -v /etc/scripts/routes
-mkdir -v /etc/scripts/others
+mkdir -pv /etc/scripts/Scheduled
 mkdir -pv /var/log/clamav/daily
 mkdir -v /var/log/rc.local
 chown emperor:emperor -R /var/log/rc.local
