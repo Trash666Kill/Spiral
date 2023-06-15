@@ -1,5 +1,3 @@
 #!/bin/sh
 set -e
 #/etc/scripts/startup.sh
-sleep 15
-#cpulimit -b -e clamscan -l 75 > /dev/null 2>&1
