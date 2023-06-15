@@ -15,7 +15,8 @@ ip link set zombie0 address 00:00:00:11:11:22
 # Routes
 #route del default enp7s0
 #ip route add default via 10.0.1.1 dev enp1s0
-# Services 
+# Services
+#cpulimit -b -e clamscan -l 75 > /dev/null 2>&1
 systemctl restart libvirtd
 systemctl restart smbd
 systemctl restart zabbix-agent
