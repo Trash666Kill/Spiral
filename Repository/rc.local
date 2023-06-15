@@ -1,4 +1,4 @@
 #!/bin/sh
-(sleep 120
-/etc/scripts/startup.sh)
+#(sleep 120
+#/etc/scripts/startup.sh)
 #
