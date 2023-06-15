@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-#/etc/scripts/startup.sh &
+#/etc/scripts/startup.sh
 sleep 15
-#/etc/scripts/scheduled/avscan.sh &
-#/etc/scripts/scheduled/sync.sh &
+#/etc/scripts/scheduled/avscan.sh
+#/etc/scripts/scheduled/sync.sh
