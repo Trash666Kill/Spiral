@@ -32,14 +32,8 @@ chown emperor:emperor -R /home/emperor
 #Conf Base
 echo "**SETTING UP BASE**"
 systemctl disable zabbix-agent
-cp -v mount.sh /etc/scripts/mount
-chmod +x /etc/scripts/mount/mount.sh
-cp -v zombie0.sh /etc/scripts/interfaces
-chmod +x /etc/scripts/interfaces/zombie0.sh
-cp -v strychnine.sh /etc/scripts/tunnels
-chmod +x /etc/scripts/tunnels/strychnine.sh
-cp -v enp1s0.sh /etc/scripts/routes
-chmod +x /etc/scripts/routes/enp1s0.sh
+cp -v startup.sh /etc/scripts/startup.sh
+chmod +x /etc/scripts/startup.sh
 cp -v rc.local /etc
 chmod 755 /etc/rc.local
 rm -v /etc/network/interfaces
