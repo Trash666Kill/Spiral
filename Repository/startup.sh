@@ -22,8 +22,8 @@ systemctl restart smbd
 systemctl restart zabbix-agent
 # Virtual Machines
 virsh start VM01
-sleep 120
-virsh start VM02
+#sleep 120
+#virsh start VM02
 )}
 # Tunnels
 autossh -M 0 -N -R 2222:localhost:26 -p 4634 emperor@strychnine.duckdns.org -o StrictHostKeyChecking=false &
