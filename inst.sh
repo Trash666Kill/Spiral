@@ -13,7 +13,7 @@ echo "**INSTALLING BASE PACKAGES**"
 echo "1"
 apt install sudo cryptsetup smartmontools vim sshfs systemd-timesyncd unzip xz-utils uuid pigz sshpass python3-apt screen -y
 echo "2"
-apt install lm-sensors htop iotop stress hdparm x11-xkb-utils bc fwupd tree zabbix-agent -y
+apt install lm-sensors htop stress hdparm x11-xkb-utils bc fwupd tree zabbix-agent -y
 echo "3"
 apt install pm-utils acpid -y
 echo "4"
