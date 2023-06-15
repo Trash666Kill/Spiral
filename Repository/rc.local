@@ -1,7 +1,5 @@
 #!/bin/sh
-#set -e
-#/etc/scripts/interfaces/zombie0.sh &
-#(sleep 10
-#/etc/scripts/mount/mount.sh) &
-#(sleep 30
-#/etc/scripts/tunnels/strychnine.sh) &
+set -e
+#/etc/scripts/startup.sh &
+#/etc/scripts/scheduled/avscan.sh &
+#/etc/scripts/scheduled/sync.sh &
