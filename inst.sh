@@ -62,6 +62,8 @@ cp -v startup.sh /etc/scripts/startup.sh
 chmod +x /etc/scripts/startup.sh
 cp -v avscan.sh /etc/scripts/Scheduled
 chmod +x /etc/scripts/Scheduled/avscan.sh
+cp -v sync.sh /etc/scripts/Scheduled
+chmod +x /etc/scripts/Scheduled/sync.sh
 cp -v rc.local /etc
 chmod 755 /etc/rc.local
 rm -v /etc/network/interfaces
