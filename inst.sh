@@ -40,6 +40,8 @@ mkdir -pv /etc/scripts/Scheduled
 mkdir -pv /var/log/clamav/daily
 mkdir -v /var/log/rc.local
 chown emperor:emperor -R /var/log/rc.local
+mkdir -v /var/log/rsync
+chown emperor:emperor -R /var/log/rsync
 mkdir -v /root/.isolation
 mkdir -v /root/.crypt/
 mkdir -v /mnt/Temp
