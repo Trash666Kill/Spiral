@@ -27,12 +27,7 @@ chown emperor:emperor -R /var/log/rc.local
 mkdir -v /root/.isolation
 mkdir -v /root/.crypt/
 mkdir -v /mnt/Temp
-mkdir -pv /mnt/Local/USB/A
-mkdir -v /mnt/Local/USB/B
-mkdir -v /mnt/Local/Container-A
-mkdir -v /mnt/Local/Container-B
-mkdir -v /mnt/Local/Essentials
-mkdir -pv /mnt/Remote/Servers
+mkdir -v /mnt/Services
 chown emperor:emperor -R /mnt
 mkdir -v /home/emperor/Temp
 mkdir -v /home/emperor/.ssh
