@@ -36,11 +36,7 @@ echo 'options kvm_intel nested=1' >> /etc/modprobe.d/kvm.conf
 /sbin/modprobe kvm_intel
 #Directories
 echo "**CREATING DIRECTORIES**"
-mkdir -pv /etc/scripts/interfaces
-mkdir -v /etc/scripts/mount
-mkdir -v /etc/scripts/tunnels
-mkdir -v /etc/scripts/routes
-mkdir -v /etc/scripts/others
+mkdir -pv /etc/scripts/Scheduled
 mkdir -pv /var/log/clamav/daily
 mkdir -v /var/log/rc.local
 chown emperor:emperor -R /var/log/rc.local
