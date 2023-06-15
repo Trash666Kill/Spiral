@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 # Mount
 cryptsetup luksOpen /dev/disk/by-uuid/898221be-388d-4b20-bfdc-74759afb8dce Container-A_crypt --key-file /root/.crypt/Container-A.key
 mount /dev/mapper/Container-A_crypt /mnt/Local/Container-A
