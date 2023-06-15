@@ -21,7 +21,6 @@ systemctl restart libvirtd
 systemctl restart smbd
 systemctl restart zabbix-agent
 # Virtual Machines
-#sleep 60
 virsh start VM00
 )}
 # Tunnels
