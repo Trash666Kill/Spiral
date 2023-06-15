@@ -17,7 +17,6 @@ apt install curl wget net-tools tcpdump traceroute nmap telnet iperf ethtool geo
 #Directories
 echo "**CREATING DIRECTORIES**"
 mkdir -pv /etc/scripts/scheduled
-mkdir -pv /var/log/clamav/daily
 mkdir -v /var/log/rc.local
 chown emperor:emperor -R /var/log/rc.local
 mkdir -v /root/.isolation
@@ -34,8 +33,6 @@ echo "**SETTING UP BASE**"
 systemctl disable zabbix-agent
 cp -v startup.sh /etc/scripts/startup.sh
 chmod +x /etc/scripts/startup.sh
-cp -v avscan.sh /etc/scripts/scheduled
-chmod +x /etc/scripts/scheduled/avscan.sh
 cp -v rc.local /etc
 chmod 755 /etc/rc.local
 rm -v /etc/network/interfaces
