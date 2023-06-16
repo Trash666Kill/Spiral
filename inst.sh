@@ -49,7 +49,6 @@ mkdir -pv /mnt/Local/USB/A
 mkdir -v /mnt/Local/USB/B
 mkdir -v /mnt/Local/Container-A
 mkdir -v /mnt/Local/Container-B
-mkdir -v /mnt/Local/Essentials
 mkdir -pv /mnt/Remote/Servers
 chown emperor:emperor -R /mnt
 mkdir -v /home/emperor/Temp
