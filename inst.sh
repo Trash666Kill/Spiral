@@ -81,7 +81,7 @@ chmod 700 /home/emperor/.ssh
 su - emperor -c "echo |touch /home/emperor/.ssh/authorized_keys"
 chmod 600 /home/emperor/.ssh/authorized_keys
 #su - emperor -c "echo |ssh-keygen -t rsa -b 4096 -N '' <<<$'\n'" > /dev/null 2>&1
-chmod 700 /root/.isolation
+chmod 600 /root/.isolation
 chmod 700 /root/.crypt
 chmod 700 /root/.ssh
 touch /root/.ssh/authorized_keys
