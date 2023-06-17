@@ -117,8 +117,7 @@ tar -xvf 01-Qogir.tar.xz -C /usr/share/icons > /dev/null 2>&1
 tar -xvf Arc-Dark.tar.xz -C /usr/share/themes > /dev/null 2>&1
 cp -v lightdm-gtk-greeter.conf /etc/lightdm/
 cp -v explorer.desktop /usr/share/applications/
-cp -v /usr/share/wallpapers/Spiral/desktop-grub.png /usr/share/images/desktop-base/
-cp -v grub_background.sh /usr/share/desktop-base/
+cp -v debian-swirl.png /usr/share/icons/default/
 mkdir -pv /etc/X11/xorg.conf.d
 # cp -v 40-libinput.conf /etc/X11/xorg.conf.d/
 #Emperor
@@ -128,7 +127,6 @@ chown emperor:emperor -R /home/emperor/
 chown emperor:emperor -R /usr/share/wallpapers/Spiral/
 #systemctl set-default multi-user.target
 systemctl disable x2goserver
-update-grub
 
 #Cleaning up
 echo "**CLEANING UP**"
