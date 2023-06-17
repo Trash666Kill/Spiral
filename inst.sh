@@ -11,7 +11,7 @@ apt update && apt upgrade -y
 #Base packages*
 echo "**INSTALLING BASE PACKAGES**"
 echo "1"
-apt install sudo cryptsetup smartmontools vim sshfs systemd-timesyncd unzip xz-utils uuid pigz sshpass python3-apt screen -y
+apt install sudo cryptsetup smartmontools vim sshfs systemd-timesyncd unzip xz-utils bzip2 uuid pigz sshpass python3-apt screen -y
 echo "2"
 apt install lm-sensors htop stress hdparm x11-xkb-utils bc fwupd tree zabbix-agent -y
 echo "3"
@@ -102,7 +102,7 @@ apt install arc-theme nitrogen x2goserver ffmpegthumbnailer -y
 echo "6"
 apt install gpicview evince galculator gnome-screenshot pluma alacarte -y
 echo "7"
-apt install connman connman-ui connman-gtk compton caja qshutdown unrar -y
+apt install connman connman-ui connman-gtk compton caja qshutdown unrar-free -y
 echo "8"
 apt install firefox-esr caffeine engrampa gparted gnome-disk-utility baobab -y
 echo "9"
