@@ -59,7 +59,7 @@ chown emperor:emperor -R /home/emperor
 echo "**SETTING UP BASE**"
 systemctl disable smbd
 systemctl disable zabbix-agent
-cp -v startup.sh /etc/scripts/startup.sh
+cp -v startup.sh /etc/scripts
 chmod +x /etc/scripts/startup.sh
 cp -v avscan.sh /etc/scripts/scheduled
 chmod +x /etc/scripts/scheduled/avscan.sh
