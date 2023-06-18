@@ -30,7 +30,7 @@ chown emperor:emperor -R /home/emperor
 #Conf Base
 echo "**SETTING UP BASE**"
 systemctl disable zabbix-agent
-cp -v startup.sh /etc/scripts/startup.sh
+cp -v startup.sh /etc/scripts
 chmod +x /etc/scripts/startup.sh
 cp -v rc.local /etc
 chmod 755 /etc/rc.local
