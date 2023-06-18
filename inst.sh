@@ -109,8 +109,6 @@ echo "9"
 apt install virt-manager ssh-askpass -y
 #Conf DE
 echo "**SETTING UP THE DESKTOP ENVIRONMENT**"
-rm -v /usr/share/desktop-base/grub_background.sh
-rm -v /usr/share/images/desktop-base/desktop-grub.png
 rm -v /etc/lightdm/lightdm-gtk-greeter.conf
 tar -xvf Spiral.tar.xz -C /usr/share/wallpapers/ > /dev/null 2>&1
 tar -xvf 01-Qogir.tar.xz -C /usr/share/icons > /dev/null 2>&1
