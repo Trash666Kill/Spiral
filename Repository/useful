@@ -29,6 +29,10 @@ BTRFS and qemu tools
 # btrfs check -b --repair /dev/mapper/A_crypt 
 # btrfsck /dev/sda
 # btrfsck --repair /dev/sda3
+# chattr +C Spiral.qcow2
+# lsattr Spiral.qcow2
+# chattr -R +C /Virt
+# lsattr -d /Virt
 
 Resize
 # qemu-img resize Music.img +30G *Sempre na ORIGEM
