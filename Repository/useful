@@ -126,6 +126,7 @@ Create encrypted drive or partition
 # cryptsetup luksAddKey /dev/disk/by-uuid/898221be-388d-4b20-bfdc-74759afb8dce /root/.crypt/Container-A.key
 # cryptsetup luksOpen /dev/disk/by-uuid/898221be-388d-4b20-bfdc-74759afb8dce Container-A_crypt --key-file /root/.crypt/Container-A.key
 # cryptsetup --verbose open --test-passphrase /dev/sda3
+# cryptsetup bitlkOpen /dev/sda1 BitLocker_crypt
 
 Zerofill
 # wipefs /dev/sda * List entries
