@@ -1,0 +1,8 @@
+<domainbackup>
+  <disks>
+    <disk name='vda' type='file'>
+    <target file='/mnt/Local/Container-B/VM01.qcow2.bkp'/>
+    <driver type='qcow2'/>
+    </disk>
+  </disks>
+</domainbackup>
