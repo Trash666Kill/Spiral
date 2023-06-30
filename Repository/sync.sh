@@ -11,7 +11,7 @@ find /var/log/rsync/ -name "*.log" -type f -mtime +7 -delete
 )}
 {(
 set -e
-sshfs -p 26 emperor@SRV01.pine:/mnt/Local/Container-B/Backup/SRV02/ /mnt/Remote/Servers/SRV01/Container-B/Backup/SRV02/ -o allow_other -o compression=no -o StrictHostKeyChecking=false
+sshfs -p 26 emperor@SRV01.pine:/mnt/Local/Container-C/Backup/SRV02/ /mnt/Remote/Servers/SRV01/Container-C/Backup/SRV02/ -o allow_other -o compression=no -o StrictHostKeyChecking=false
 virsh backup-begin VM02 ./VM02.xml
 #
 )}
