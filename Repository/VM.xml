@@ -1,7 +1,7 @@
 <domainbackup>
   <disks>
     <disk name='vda' type='file'>
-    <target file='/mnt/Remote/Servers/SRV01/Container-B/Backup/SRV02/VM01.qcow2'/>
+    <target file='/mnt/Remote/Servers/SRV01/Container-B/Backup/SRV02/VM.qcow2'/>
     <driver type='qcow2'/>
     </disk>
   </disks>
