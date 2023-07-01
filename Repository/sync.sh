@@ -10,7 +10,6 @@ find /var/log/rsync/ -name "*.log" -type f -mtime +7 -delete
 #
 )}
 {(
-set -e
 mount SRV01.pine:/mnt/Local/Container-C/Backup/SRV02 /mnt/Remote/Servers/SRV01/Container-C/Backup/SRV02
 cd /mnt/Remote/Servers/SRV01/Container-C/Backup/SRV02/Virt/Images/
 find -name "*qcow2" -type f -mtime +7 -delete 
