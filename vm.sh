@@ -18,15 +18,15 @@ apt install curl wget net-tools tcpdump traceroute nmap telnet iperf ethtool geo
 echo "**CREATING DIRECTORIES**"
 mkdir -pv /etc/scripts/scheduled
 mkdir -v /var/log/rc.local
-chown emperor:emperor -R /var/log/rc.local
+chown -v emperor:emperor -R /var/log/rc.local
 mkdir -v /root/.crypt/
 mkdir -v /mnt/Temp
 mkdir -v /mnt/Services
-chown emperor:emperor -R /mnt
+chown -v emperor:emperor -R /mnt
 mkdir -v /home/emperor/Temp
 mkdir -v /home/emperor/.ssh
 mkdir -v /root/.ssh
-chown emperor:emperor -R /home/emperor
+chown -v emperor:emperor -R /home/emperor
 #Conf Base
 echo "**SETTING UP BASE**"
 systemctl disable zabbix-agent
