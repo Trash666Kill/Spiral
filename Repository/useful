@@ -137,6 +137,7 @@ Zerofill
 # wipefs --all --force /dev/sda * Clean entries
 # shred -v /dev/sda
 # shred -n 2 -z -v /dev/sda
+# shred -uvz file.txt
 
 Stress hardware
 # stress --cpu  4 --timeout 20
