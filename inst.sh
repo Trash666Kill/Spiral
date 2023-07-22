@@ -57,8 +57,9 @@ mkdir -v /root/.ssh
 chown -v emperor:emperor -R /home/emperor
 #Conf Base
 echo "**SETTING UP BASE**"
-systemctl disable smbd
-systemctl disable zabbix-agent
+systemctl disable --now smbd
+systemctl disable --now nfs-kernel-server
+systemctl disable --now zabbix-agent
 cp -v startup.sh /etc/scripts
 chmod +x /etc/scripts/startup.sh
 cp -v avscan.sh /etc/scripts/scheduled
