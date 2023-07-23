@@ -19,6 +19,8 @@ echo "**CREATING DIRECTORIES**"
 mkdir -pv /etc/scripts/scheduled
 mkdir -v /var/log/rc.local
 chown -v emperor:emperor -R /var/log/rc.local
+mkdir -v /var/log/rsync
+chown -v emperor:emperor -R /var/log/rsync
 mkdir -v /root/.crypt/
 mkdir -v /mnt/Temp
 mkdir -v /mnt/Services
