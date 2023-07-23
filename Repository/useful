@@ -44,6 +44,8 @@ or
 # qemu-img check data.qcow
 # qemu-img check -r all data.qcow
 # qemu-img create -f qcow2 Violet.qcow2 2G
+# resize2fs /dev/sda2 * EXT4 Filesystem
+# e2fsck -f /dev/sda2 * EXT4 Filesystem
 
 Virsh
 # virsh autostart VM
