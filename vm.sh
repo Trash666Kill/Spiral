@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-cd /Spiral-bookworm/Repository/
+cd $PWD/Repository
 rm -v /etc/apt/sources.list
 cp -v sources.list /etc/apt/
 #Update and Upgrade
