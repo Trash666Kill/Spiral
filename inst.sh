@@ -121,8 +121,8 @@ mkdir -pv /etc/X11/xorg.conf.d
 #Emperor
 rm -rv /home/emperor/.config
 tar -xvf home.tar.xz -C /home/emperor/ > /dev/null 2>&1
-chown -v emperor:emperor -R /home/emperor/
-chown -v emperor:emperor -R /usr/share/wallpapers/Spiral/
+chown emperor:emperor -R /home/emperor/
+chown emperor:emperor -R /usr/share/wallpapers/Spiral/
 #systemctl set-default multi-user.target
 systemctl disable x2goserver
 
