@@ -1,7 +1,7 @@
 #!/bin/bash
 {(
 set -e
-rsync --bwlimit=20480 -rtu --delete --info=del,name,stats2 --log-file=/var/log/rsync/database-`date +%F_%T`.log -e 'ssh -p 26' /mnt/Local/Container-A/Database/ emperor@SRV01.pine:/mnt/Local/Container-C/Backup/SRV02/Database/
+rsync --bwlimit=20480 -ahx --delete --info=del,name,stats2 --log-file=/var/log/rsync/database-`date +%F_%T`.log -e 'ssh -p 26' /mnt/Local/Container-A/Database/ emperor@SRV01.pine:/mnt/Local/Container-C/Backup/SRV02/Database/
 find /var/log/rsync/ -name "*.log" -type f -mtime +7 -delete
 )}
 #
