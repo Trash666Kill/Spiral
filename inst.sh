@@ -90,7 +90,7 @@ chmod 600 /root/.ssh/authorized_keys
 #DE
 echo "**INSTALLING THE DESKTOP ENVIRONMENT**"
 echo "1"
-apt install xorg xserver-xorg-input-libinput xserver-xorg-input-evdev -y
+apt install xorg xserver-xorg-input-libinput xserver-xorg-input-evdev brightnessctl -y
 echo "2"
 apt install xserver-xorg-input-mouse xserver-xorg-input-synaptics -y
 echo "3"
