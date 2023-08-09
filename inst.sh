@@ -40,7 +40,7 @@ mkdir -pv /var/log/clamav/daily
 mkdir -v /var/log/rc.local
 chown -v emperor:emperor -R /var/log/rc.local
 mkdir -v /var/log/rsync
-chown -v emperor:emperor -R /var/log/rsync
+chown emperor:emperor -R /var/log/rsync
 mkdir -v /root/.isolation
 mkdir -v /root/.crypt/
 mkdir -v /mnt/Temp
@@ -49,11 +49,11 @@ mkdir -v /mnt/Local/USB/B
 mkdir -v /mnt/Local/Container-A
 mkdir -v /mnt/Local/Container-B
 mkdir -pv /mnt/Remote/Servers
-chown -v emperor:emperor -R /mnt
+chown emperor:emperor -R /mnt
 mkdir -v /home/emperor/Temp
 mkdir -v /home/emperor/.ssh
 mkdir -v /root/.ssh
-chown -v emperor:emperor -R /home/emperor
+chown emperor:emperor -R /home/emperor
 #Conf Base
 echo "**SETTING UP BASE**"
 systemctl disable --now smbd
