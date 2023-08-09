@@ -38,7 +38,7 @@ echo "**CREATING DIRECTORIES**"
 mkdir -pv /etc/scripts/scheduled
 mkdir -pv /var/log/clamav/daily
 mkdir -v /var/log/rc.local
-chown -v emperor:emperor -R /var/log/rc.local
+chown emperor:emperor -R /var/log/rc.local
 mkdir -v /var/log/rsync
 chown emperor:emperor -R /var/log/rsync
 mkdir -v /root/.isolation
