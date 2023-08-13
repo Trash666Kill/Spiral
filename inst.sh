@@ -94,7 +94,7 @@ apt install xorg xserver-xorg-input-libinput xserver-xorg-input-evdev brightness
 echo "2"
 apt install xserver-xorg-input-mouse xserver-xorg-input-synaptics -y
 echo "3"
-apt install lightdm openbox obconf lxterminal lxpanel xscreensaver lxhotkey-gtk -y
+apt install lightdm openbox obconf lxterminal lxpanel lxhotkey-gtk -y
 echo "4"
 apt install lxtask lxsession-logout lxappearance lxrandr xfce4-power-manager progress -y
 echo "5"
