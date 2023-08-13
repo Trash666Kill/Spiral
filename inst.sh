@@ -120,7 +120,8 @@ mkdir -pv /etc/X11/xorg.conf.d
 # cp -v 40-libinput.conf /etc/X11/xorg.conf.d/
 #Emperor
 rm -rv /home/emperor/.config
-tar -xvf home.tar.xz -C /home/emperor/ > /dev/null 2>&1
+cp -rv home/config /home/emperor/.config > /dev/null 2>&1
+cp -rv home/mozilla /home/emperor/.mozilla > /dev/null 2>&1
 chown emperor:emperor -R /home/emperor/
 chown emperor:emperor -R /usr/share/wallpapers/Spiral/
 #systemctl set-default multi-user.target
