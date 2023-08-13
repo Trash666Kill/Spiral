@@ -110,7 +110,7 @@ apt install virt-manager ssh-askpass -y
 #Conf DE
 echo "**SETTING UP THE DESKTOP ENVIRONMENT**"
 rm -v /etc/lightdm/lightdm-gtk-greeter.conf
-tar -xvf Spiral.tar.xz -C /usr/share/wallpapers/ > /dev/null 2>&1
+cp -v default.jpg /usr/share/wallpapers/
 tar -xvf 01-Qogir.tar.xz -C /usr/share/icons > /dev/null 2>&1
 tar -xvf Arc-Dark.tar.xz -C /usr/share/themes > /dev/null 2>&1
 cp -v lightdm-gtk-greeter.conf /etc/lightdm/
@@ -121,7 +121,6 @@ mkdir -pv /etc/X11/xorg.conf.d
 #Emperor
 rm -rv /home/emperor/.config
 cp -rv home/config /home/emperor/.config > /dev/null 2>&1
-cp -rv home/mozilla /home/emperor/.mozilla > /dev/null 2>&1
 chown emperor:emperor -R /home/emperor/
 chown emperor:emperor -R /usr/share/wallpapers/Spiral/
 #systemctl set-default multi-user.target
