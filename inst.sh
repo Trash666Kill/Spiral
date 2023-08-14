@@ -66,6 +66,7 @@ cp -v avscan.sh /etc/scripts/scheduled
 chmod +x /etc/scripts/scheduled/avscan.sh
 cp -v sync.sh /etc/scripts/scheduled
 chmod +x /etc/scripts/scheduled/sync.sh
+cp -v VM.xml /etc/scripts/scheduled
 cp -v rc.local /etc
 chmod 755 /etc/rc.local
 rm -v /etc/network/interfaces
