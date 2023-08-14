@@ -17,7 +17,7 @@ apt install lm-sensors htop stress hdparm x11-xkb-utils bc fwupd tree zabbix-age
 echo "3"
 apt install pm-utils acpid cpulimit -y
 echo "4"
-apt install curl wget samba net-tools tcpdump traceroute nmap telnet iperf ethtool geoip-bin speedtest-cli nload autossh -y
+apt install curl wget samba net-tools tcpdump traceroute iperf ethtool geoip-bin speedtest-cli nload autossh -y
 echo "5"
 apt install btrfs-progs ntfs-3g dosfstools rsync nfs-kernel-server -y
 #echo "6"
