@@ -120,9 +120,11 @@ mkdir -pv /etc/X11/xorg.conf.d
 # cp -v 40-libinput.conf /etc/X11/xorg.conf.d/
 #Emperor
 rm -r /home/emperor/.config
+cp -v gtkrc-2.0 /home/emperor/.gtkrc-2.0
 cp -r config /home/emperor/.config
-chown emperor:emperor -R /home/emperor/
-chown emperor:emperor -R /usr/share/wallpapers/default.jpg
+chown emperor:emperor -R /home/emperor/.config
+chown emperor:emperor /home/emperor/.gtkrc-2.0
+chown emperor:emperor /usr/share/wallpapers/default.jpg
 #systemctl set-default multi-user.target
 systemctl disable --now x2goserver
 
