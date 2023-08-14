@@ -11,6 +11,6 @@
 nitrogen --restore &
 lxpanel &
 #virt-manager &
-#caffeine-indicator &
+caffeine-indicator &
 compton &
 xfce4-power-manager &
