@@ -119,10 +119,10 @@ cp -v debian-swirl.png /usr/share/icons/default/
 mkdir -pv /etc/X11/xorg.conf.d
 # cp -v 40-libinput.conf /etc/X11/xorg.conf.d/
 #Emperor
-rm -rv /home/emperor/.config
-cp -rv config /home/emperor/.config > /dev/null 2>&1
+rm -r /home/emperor/.config
+cp -r config /home/emperor/.config
 chown emperor:emperor -R /home/emperor/
-chown emperor:emperor -R /usr/share/wallpapers/Spiral/
+chown emperor:emperor -R /usr/share/wallpapers/default.jpg
 #systemctl set-default multi-user.target
 systemctl disable --now x2goserver
 
