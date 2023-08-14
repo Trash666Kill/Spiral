@@ -9,7 +9,7 @@ apt update && apt upgrade -y
 #Base packages*
 echo "**INSTALLING BASE PACKAGES**"
 echo "1"
-apt install sudo cryptsetup vim sshfs nfs-common systemd-timesyncd unzip xz-utils sshpass bzip2 python3-apt screen -y
+apt install sudo vim sshfs nfs-common systemd-timesyncd unzip xz-utils sshpass bzip2 python3-apt screen -y
 echo "2"
 apt install htop stress hdparm tree zabbix-agent -y
 echo "3"
