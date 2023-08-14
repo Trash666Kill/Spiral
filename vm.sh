@@ -13,7 +13,7 @@ apt install sudo cryptsetup vim sshfs nfs-common systemd-timesyncd unzip xz-util
 echo "2"
 apt install htop stress hdparm tree zabbix-agent -y
 echo "3"
-apt install curl wget net-tools tcpdump traceroute nmap telnet iperf ethtool geoip-bin speedtest-cli nload autossh -y
+apt install curl wget net-tools tcpdump traceroute iperf ethtool geoip-bin speedtest-cli nload autossh -y
 #Directories
 echo "**CREATING DIRECTORIES**"
 mkdir -pv /etc/scripts/scheduled
