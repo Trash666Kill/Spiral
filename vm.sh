@@ -21,7 +21,7 @@ mkdir -v /var/log/rc.local
 chown emperor:emperor -R /var/log/rc.local
 mkdir -v /var/log/rsync
 chown emperor:emperor -R /var/log/rsync
-mkdir -v /root/.crypt/
+mkdir -v /root/.crypt
 mkdir -v /mnt/Temp
 mkdir -v /mnt/Services
 chown emperor:emperor -R /mnt
