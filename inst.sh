@@ -119,7 +119,7 @@ cp -v lightdm-gtk-greeter.conf /etc/lightdm
 cp -v explorer.desktop /usr/share/applications
 cp -v debian-swirl.png /usr/share/icons/default
 mkdir -pv /etc/X11/xorg.conf.d
-# cp -v 40-libinput.conf /etc/X11/xorg.conf.d/
+# cp -v 40-libinput.conf /etc/X11/xorg.conf.d
 #Emperor
 rm -r /home/emperor/.config
 cp -v gtkrc-2.0 /home/emperor/.gtkrc-2.0
