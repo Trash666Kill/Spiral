@@ -2,7 +2,7 @@
 #
 cd $PWD/Repository
 rm -v /etc/apt/sources.list
-cp -v sources.list /etc/apt/
+cp -v sources.list /etc/apt
 #Update and Upgrade
 echo "**UPDATING AND UPGRADING**"
 apt update && apt upgrade -y
