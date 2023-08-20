@@ -4,7 +4,7 @@
 cd $PWD/Repository
 echo "**ADDING NON-FREE REPOSITORIES**"
 rm -v /etc/apt/sources.list
-cp -v sources.list /etc/apt/
+cp -v sources.list /etc/apt
 #Update and Upgrade
 echo "**UPDATING AND UPGRADING**"
 apt update && apt upgrade -y
@@ -42,7 +42,7 @@ chown emperor:emperor -R /var/log/rc.local
 mkdir -v /var/log/rsync
 chown emperor:emperor -R /var/log/rsync
 mkdir -v /root/.isolation
-mkdir -v /root/.crypt/
+mkdir -v /root/.crypt
 mkdir -v /mnt/Temp
 mkdir -pv /mnt/Local/USB/A
 mkdir -v /mnt/Local/USB/B
@@ -112,12 +112,12 @@ apt install virt-manager ssh-askpass -y
 #Conf DE
 echo "**SETTING UP THE DESKTOP ENVIRONMENT**"
 rm -v /etc/lightdm/lightdm-gtk-greeter.conf
-cp -v default.jpg /usr/share/wallpapers/
+cp -v default.jpg /usr/share/wallpapers
 tar -xvf 01-Qogir.tar.xz -C /usr/share/icons > /dev/null 2>&1
 tar -xvf Arc-Dark.tar.xz -C /usr/share/themes > /dev/null 2>&1
-cp -v lightdm-gtk-greeter.conf /etc/lightdm/
-cp -v explorer.desktop /usr/share/applications/
-cp -v debian-swirl.png /usr/share/icons/default/
+cp -v lightdm-gtk-greeter.conf /etc/lightdm
+cp -v explorer.desktop /usr/share/applications
+cp -v debian-swirl.png /usr/share/icons/default
 mkdir -pv /etc/X11/xorg.conf.d
 # cp -v 40-libinput.conf /etc/X11/xorg.conf.d/
 #Emperor
