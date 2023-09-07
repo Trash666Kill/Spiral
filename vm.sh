@@ -35,6 +35,7 @@ systemctl enable --now serial-getty@ttyS0.service
 rm /etc/default/grub
 cp grub /etc/default
 chmod 644 /etc/default/grub
+update-grub
 systemctl disable zabbix-agent
 cp -v startup.sh /etc/scripts
 chmod +x /etc/scripts/startup.sh
