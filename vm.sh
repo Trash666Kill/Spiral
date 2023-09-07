@@ -32,8 +32,8 @@ chown emperor:emperor -R /home/emperor
 #Conf Base
 echo "**SETTING UP BASE**"
 systemctl enable --now serial-getty@ttyS0.service
-rm /etc/default/grub
-cp grub /etc/default
+rm -v /etc/default/grub
+cp -v grub /etc/default
 chmod 644 /etc/default/grub
 update-grub
 systemctl disable zabbix-agent
