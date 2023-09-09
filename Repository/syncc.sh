@@ -15,7 +15,7 @@ cp -rv /var/spool/cron/crontabs .
 cp -rv /home/emperor/Temp .
 cd ../
 chown emperor:emperor -R confbkp
-su - emperor -c "tar -cvzf confbkp-`date +%F`.tar.gz confbkp/ > /dev/null 2>&1"
+tar -cvzf confbkp-`date +%F`.tar.gz confbkp/ > /dev/null 2>&1
 chown emperor:emperor confbkp-`date +%F`.tar.gz
 rm -r confbkp
 #
