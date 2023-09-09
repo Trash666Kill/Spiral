@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-mkdir -v /tmp/vpsbkp
-cd /tmp/vpsbkp
+mkdir -v /tmp/confbkp
+cd /tmp/confbkp
 cp -v /etc/network/interfaces .
 cp -v /etc/exports .
 cp -v /etc/rc.local .
@@ -14,8 +14,8 @@ cp -v /etc/hosts .
 cp -rv /var/spool/cron/crontabs .
 cp -rv /home/emperor/Temp .
 cd ../
-chown emperor:emperor -R vpsbkp
-su - emperor -c "tar -cvzf vpsbkp-`date +%F`.tar.gz vpsbkp/ > /dev/null 2>&1"
-chown emperor:emperor vpsbkp-`date +%F`.tar.gz
-rm -r vpsbkp
+chown emperor:emperor -R confbkp
+su - emperor -c "tar -cvzf confbkp-`date +%F`.tar.gz confbkp/ > /dev/null 2>&1"
+chown emperor:emperor confbkp-`date +%F`.tar.gz
+rm -r confbkp
 #
