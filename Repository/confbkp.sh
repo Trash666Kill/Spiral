@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 #
 mkdir -v /tmp/confbkp
 cd /tmp/confbkp
