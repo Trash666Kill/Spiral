@@ -3,6 +3,7 @@
 mkdir -v /tmp/vpsbkp
 cd /tmp/vpsbkp
 cp -v /etc/network/interfaces .
+cp -v /etc/exports .
 cp -v /etc/rc.local .
 cp -rv /etc/scripts .
 mkdir -pv keys/users/emperor
