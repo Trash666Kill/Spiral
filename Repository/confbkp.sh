@@ -6,6 +6,8 @@ cp -v /etc/network/interfaces .
 cp -v /etc/exports .
 cp -v /etc/rc.local .
 cp -rv /etc/scripts .
+cp -rv /etc/libvirt/qemu .
+cp -rv /etc/libvirt/storage .
 mkdir -pv keys/users/emperor
 mkdir -v keys/users/root
 cp -v /home/emperor/.ssh/authorized_keys keys/users/emperor
