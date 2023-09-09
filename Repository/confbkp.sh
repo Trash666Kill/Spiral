@@ -17,7 +17,7 @@ cd ../
 chown emperor:emperor -R confbkp
 tar -cvzf confbkp-`date +%F`.tar.gz confbkp/ > /dev/null 2>&1
 chown emperor:emperor confbkp-`date +%F`.tar.gz
-su - emperor -c "cp -v confbkp-`date +%F`.tar.gz /mnt/Local/Container-C/Backup/SRV01"
+cp -v confbkp-`date +%F`.tar.gz /mnt/Local/Container-C/Backup/SRV01
 rm -r confbkp
 rm -v confbkp-`date +%F`.tar.gz
 #
