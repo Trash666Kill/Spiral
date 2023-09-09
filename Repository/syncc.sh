@@ -1,9 +1,4 @@
 #!/bin/bash
-
-if [[ $EUID -ne 0 ]]; then
-        echo "This script must be run as sudo"
-        exit 1
-else
 #
 mkdir -v /tmp/vpsbkp
 cd /tmp/vpsbkp
@@ -23,4 +18,3 @@ su - emperor -c "tar -cvzf vpsbkp-`date +%F`.tar.gz vpsbkp/ > /dev/null 2>&1"
 chown emperor:emperor vpsbkp-`date +%F`.tar.gz
 rm -r vpsbkp
 #
-fi
