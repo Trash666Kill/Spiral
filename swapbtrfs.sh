@@ -6,5 +6,5 @@ if [[ $EUID -ne 0 ]]; then
 else
 # swapfile
 btrfs subvolume create /swap
-btrfs filesystem mkswapfile --size 8g --uuid clear /swap/swapfile
+btrfs filesystem mkswapfile --size $1 --uuid clear /swap/swapfile
 swapon /swap/swapfile
