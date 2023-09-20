@@ -8,3 +8,5 @@ else
 btrfs subvolume create /swap
 btrfs filesystem mkswapfile --size $1 --uuid clear /swap/swapfile
 swapon /swap/swapfile
+swapon --show
+fi
