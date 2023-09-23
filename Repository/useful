@@ -25,7 +25,9 @@ FWUPD
 # fwupdmgr update
 
 BTRFS and qemu tools
-# btrfs fi usage /mnt
+# btrfs device scan
+# btrfs filesystem usage /mnt/Local/Pool-A
+# btrfs device stats /mnt/Local/Pool-A
 # btrfsck
 # btrfs check -b --repair /dev/mapper/A_crypt 
 # btrfsck /dev/sda
