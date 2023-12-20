@@ -33,6 +33,7 @@ touch /etc/modprobe.d/kvm.conf
 echo 'options kvm_intel nested=1' >> /etc/modprobe.d/kvm.conf
 /sbin/modprobe -r kvm_intel
 /sbin/modprobe kvm_intel
+virsh net-autostart default
 #Directories
 echo "**CREATING DIRECTORIES**"
 mkdir -pv /etc/scripts/scheduled
