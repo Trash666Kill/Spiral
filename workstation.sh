@@ -1,6 +1,4 @@
 #!/bin/bash
-#
-#Non-free repo
 sleep 10
 cd $PWD/Repository
 echo "**ADDING NON-FREE REPOSITORIES**"
