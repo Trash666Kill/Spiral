@@ -61,6 +61,7 @@ echo "**SETTING UP BASE**"
 systemctl disable --now smbd
 systemctl disable --now nfs-kernel-server
 systemctl disable --now zabbix-agent
+cp -v timesyncd.conf /etc/systemd
 cp -v exports /etc
 cp -v startup.sh /etc/scripts
 chmod +x /etc/scripts/startup.sh
