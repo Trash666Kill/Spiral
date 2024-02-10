@@ -41,6 +41,8 @@ cp -v startup.sh /etc/scripts
 chmod +x /etc/scripts/startup.sh
 cp -v rc.local /etc
 chmod 755 /etc/rc.local
+rm -v /etc/systemd/timesyncd.conf
+cp -v timesyncd.conf /etc/systemd
 rm -v /etc/network/interfaces
 cp -v interfaces /etc/network
 rm -v /etc/ssh/sshd_config
