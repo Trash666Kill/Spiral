@@ -11,13 +11,13 @@ apt update && apt upgrade -y
 #Base packages*
 echo "**INSTALLING BASE PACKAGES**"
 echo "1"
-apt install sudo cryptsetup smartmontools vim sshfs systemd-timesyncd unzip xz-utils bzip2 uuid pigz sshpass python3-apt screen -y
+apt install sudo cryptsetup smartmontools vim sshfs systemd-timesyncd unzip xz-utils bzip2 uuid pigz sshpass python3-apt screen passwd -y
 echo "2"
-apt install lm-sensors htop stress hdparm x11-xkb-utils bc fwupd tree zabbix-agent -y
+apt install lm-sensors htop stress hdparm x11-xkb-utils bc fwupd tree -y
 echo "3"
 apt install pm-utils acpid cpulimit -y
 echo "4"
-apt install curl wget samba net-tools tcpdump traceroute iperf ethtool geoip-bin speedtest-cli nload autossh -y
+apt install curl wget net-tools tcpdump traceroute iperf ethtool geoip-bin speedtest-cli nload autossh -y
 echo "5"
 apt install btrfs-progs ntfs-3g dosfstools rsync nfs-kernel-server -y
 #echo "6"
