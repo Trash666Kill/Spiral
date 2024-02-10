@@ -107,7 +107,7 @@ apt install arc-theme nitrogen x2goserver ffmpegthumbnailer -y
 echo "6"
 apt install gpicview evince galculator gnome-screenshot pluma alacarte -y
 echo "7"
-apt install connman connman-ui connman-gtk compton caja unrar -y
+apt install connman connman-ui connman-gtk compton thunar unrar -y
 echo "8"
 apt install firefox-esr caffeine engrampa gparted gnome-disk-utility baobab -y
 echo "9"
