@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 #Non-free repo
+sleep 10
 cd $PWD/Repository
 echo "**ADDING NON-FREE REPOSITORIES**"
 rm -v /etc/apt/sources.list
