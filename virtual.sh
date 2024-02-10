@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+sleep 10
 cd $PWD/Repository
 rm -v /etc/apt/sources.list
 cp -v sources.list /etc/apt
