@@ -110,7 +110,7 @@ apt install lxtask lxsession-logout lxappearance lxrandr xfce4-power-manager pro
 echo "5"
 apt install arc-theme nitrogen x2goserver ffmpegthumbnailer -y
 echo "6"
-apt install gpicview evince galculator gnome-screenshot pluma alacarte -y
+apt install gpicview evince galculator gnome-screenshot pluma alacarte gpick -y
 echo "7"
 apt install connman connman-ui connman-gtk compton pcmanfm unrar -y
 echo "8"
