@@ -29,9 +29,14 @@ apt install qemu-kvm libvirt0 bridge-utils libvirt-daemon-system -y
 gpasswd libvirt -a emperor
 systemctl disable --now libvirtd
 touch /etc/modprobe.d/kvm.conf
-echo 'options kvm_intel nested=1' >> /etc/modprobe.d/kvm.conf
-/sbin/modprobe -r kvm_intel
-/sbin/modprobe kvm_intel
+#Nested Intel processors
+#echo 'options kvm_intel nested=1' >> /etc/modprobe.d/kvm.conf
+#/sbin/modprobe -r kvm_intel
+#/sbin/modprobe kvm_intel
+#Nested AMD processors
+#echo 'options kvm_amd nested=1' >> /etc/modprobe.d/kvm.conf
+#/sbin/modprobe -r kvm_amd
+#/sbin/modprobe kvm_amd nested=1
 virsh net-autostart default
 #Directories
 echo "**CREATING DIRECTORIES**"
