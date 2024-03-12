@@ -44,8 +44,8 @@ printf '#!/bin/bash
 # Services
 #systemctl restart service
 #' > /etc/scripts/startup.sh
-chmod +x /etc/scripts/startup.sh
 )}
+chmod +x /etc/scripts/startup.sh
 {(
 printf '#!/bin/sh
 #/etc/scripts/startup.sh
