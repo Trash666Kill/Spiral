@@ -44,7 +44,29 @@ chmod 755 /etc/rc.local
 rm -v /etc/systemd/timesyncd.conf
 cp -v timesyncd.conf /etc/systemd
 rm -v /etc/network/interfaces
-cp -v interfaces /etc/network
+{(
+printf 'source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# Virtual network interface
+allow-hotplug enp1s0
+iface enp1s0 inet dhcp
+
+# NIC0
+#auto enp1s0
+#iface enp1s0 inet static
+#address 172.16.10.2/24
+#gateway 172.16.10.1
+
+# NIC1
+#auto enp7s0
+#iface enp7s0 inet static
+#address 10.0.0.0/26
+#' > /etc/network/interfaces
+)}
 rm -v /etc/ssh/sshd_config
 cp -v sshd_config /etc/ssh
 rm -v /etc/motd
