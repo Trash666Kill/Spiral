@@ -45,17 +45,18 @@ printf '#!/bin/bash
 #systemctl restart service
 #' > /etc/scripts/startup.sh
 chmod +x /etc/scripts/startup.sh
+)}
 {(
 printf '#!/bin/sh
-/etc/scripts/startup.sh
+#/etc/scripts/startup.sh
 #' > /etc/rc.local
+)}
 chmod 755 /etc/rc.local
 rm -v /etc/systemd/timesyncd.conf
 cp -v timesyncd.conf /etc/systemd
 rm -v /etc/network/interfaces
 {(
 printf 'source /etc/network/interfaces.d/*
-
 # The loopback network interface
 auto lo
 iface lo inet loopback
