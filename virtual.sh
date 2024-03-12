@@ -37,9 +37,18 @@ cp -v grub /etc/default
 chmod 644 /etc/default/grub
 update-grub
 systemctl disable zabbix-agent
-cp -v startup.sh /etc/scripts
+{(
+printf '#!/bin/bash
+# Mount
+#mount SRV01.vsw0:/mnt/Local/Pool-A/Files /mnt/Services/Service/Type/0/
+# Services
+#systemctl restart service
+#' > /etc/scripts/startup.sh
 chmod +x /etc/scripts/startup.sh
-cp -v rc.local /etc
+{(
+printf '#!/bin/sh
+/etc/scripts/startup.sh
+#' > /etc/rc.local
 chmod 755 /etc/rc.local
 rm -v /etc/systemd/timesyncd.conf
 cp -v timesyncd.conf /etc/systemd
