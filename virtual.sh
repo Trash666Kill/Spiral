@@ -33,7 +33,13 @@ chown emperor:emperor -R /home/emperor
 echo "**SETTING UP BASE**"
 systemctl enable --now serial-getty@ttyS0.service
 rm -v /etc/default/grub
-cp -v grub /etc/default
+{(
+printf 'GRUB_DEFAULT=0
+GRUB_TIMEOUT=0
+GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
+GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS0,115200n8"
+GRUB_CMDLINE_LINUX=""' > /etc/default/grub
+)}
 chmod 644 /etc/default/grub
 update-grub
 systemctl disable zabbix-agent
