@@ -84,7 +84,26 @@ iface enp1s0 inet dhcp
 #' > /etc/network/interfaces
 )}
 rm -v /etc/ssh/sshd_config
-cp -v sshd_config /etc/ssh
+{(
+printf 'Include /etc/ssh/sshd_config.d/*.conf
+
+#Port 22
+
+PubkeyAuthentication yes
+
+ChallengeResponseAuthentication no
+
+UsePAM yes
+
+X11Forwarding yes
+PrintMotd no
+PrintLastLog no
+
+AcceptEnv LANG LC_*
+
+Subsystem       sftp    /usr/lib/openssh/sftp-server' > /etc/ssh/sshd_config
+)}
+chmod 644 /etc/ssh/sshd_config
 rm -v /etc/motd
 cp -v useful /home/emperor/.useful
 touch /etc/motd
