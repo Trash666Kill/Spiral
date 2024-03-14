@@ -141,3 +141,4 @@ echo "**END**"
 echo "1 - Add zabbix server ip address in /etc/zabbix/zabbix_agentd.conf"
 su - emperor
 #
+:q
