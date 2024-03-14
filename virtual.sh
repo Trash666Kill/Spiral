@@ -2,7 +2,20 @@
 sleep 10
 cd $PWD/Repository
 rm -v /etc/apt/sources.list
-cp -v sources.list /etc/apt
+{(
+printf '#
+deb http://deb.debian.org/debian/ bookworm main non-free non-free-firmware
+deb-src http://deb.debian.org/debian/ bookworm main non-free non-free-firmware
+#
+deb http://security.debian.org/debian-security bookworm-security main non-free non-free-firmware
+deb-src http://security.debian.org/debian-security bookworm-security main non-free non-free-firmware
+#
+deb http://deb.debian.org/debian/ bookworm-updates main non-free non-free-firmware
+deb-src http://deb.debian.org/debian/ bookworm-updates main non-free non-free-firmware
+#
+#deb http://deb.debian.org/debian bookworm-backports main non-free 
+#' > /etc/apt/sources.list
+)}
 #Update and Upgrade
 echo "**UPDATING AND UPGRADING**"
 apt update && apt upgrade -y
