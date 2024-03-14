@@ -71,7 +71,10 @@ printf '#!/bin/sh
 )}
 chmod 755 /etc/rc.local
 rm -v /etc/systemd/timesyncd.conf
-cp -v timesyncd.conf /etc/systemd
+{(
+printf '[Time]
+NTP=a.st1.ntp.br' > /etc/systemd/timesyncd.conf
+)}
 rm -v /etc/network/interfaces
 {(
 printf 'source /etc/network/interfaces.d/*
