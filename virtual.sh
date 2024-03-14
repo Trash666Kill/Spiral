@@ -1,5 +1,6 @@
 #!/bin/bash
 sleep 10
+cd $PWD
 rm -v /etc/apt/sources.list
 {(
 printf '#
