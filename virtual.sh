@@ -121,9 +121,9 @@ Subsystem       sftp    /usr/lib/openssh/sftp-server' > /etc/ssh/sshd_config
 chmod 644 /etc/ssh/sshd_config
 rm -v /etc/motd && touch /etc/motd
 chmod 700 /home/emperor/.ssh
-su - emperor -c "echo |touch /home/emperor/.ssh/authorized_keys"
+su - emperor -c "echo | touch /home/emperor/.ssh/authorized_keys"
 chmod 600 /home/emperor/.ssh/authorized_keys
-#su - emperor -c "echo |ssh-keygen -t rsa -b 4096 -N '' <<<$'\n'" > /dev/null 2>&1
+#su - emperor -c "echo | ssh-keygen -t rsa -b 4096 -N '' <<<$'\n'" > /dev/null 2>&1
 chmod 600 /root/.crypt
 chmod 600 /root/.ssh
 touch /root/.ssh/authorized_keys
