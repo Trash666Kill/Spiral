@@ -140,6 +140,6 @@ apt autoremove -y
 echo "**END**"
 #Manual settings
 echo "1 - Add zabbix server ip address in /etc/zabbix/zabbix_agentd.conf"
-su - emperor
 rm -- "$0"
+su - emperor
 #
