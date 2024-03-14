@@ -119,9 +119,7 @@ AcceptEnv LANG LC_*
 Subsystem       sftp    /usr/lib/openssh/sftp-server' > /etc/ssh/sshd_config
 )}
 chmod 644 /etc/ssh/sshd_config
-rm -v /etc/motd
-touch /etc/motd
-cp -v useful /home/emperor/.useful
+rm -v /etc/motd && touch /etc/motd
 chmod 700 /home/emperor/.ssh
 su - emperor -c "echo |touch /home/emperor/.ssh/authorized_keys"
 chmod 600 /home/emperor/.ssh/authorized_keys
