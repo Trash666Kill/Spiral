@@ -25,31 +25,17 @@ echo "**INSTALLING BASE PACKAGES**"
 echo "1"
 apt install sudo cryptsetup smartmontools vim sshfs systemd-timesyncd unzip xz-utils bzip2 uuid pigz sshpass python3-apt screen -y
 echo "2"
-apt install lm-sensors htop stress hdparm x11-xkb-utils bc fwupd tree zabbix-agent -y
+apt install lm-sensors htop stress hdparm x11-xkb-utils bc tree cpulimit -y
 echo "3"
-apt install pm-utils acpid cpulimit -y
-echo "4"
 apt install curl wget samba net-tools tcpdump traceroute iperf ethtool geoip-bin speedtest-cli nload autossh -y
-echo "5"
+echo "4"
 apt install btrfs-progs ntfs-3g dosfstools rsync nfs-kernel-server -y
-#echo "6"
-#apt install nvidia-driver firmware-amd-graphics -y
-echo "7"
-apt install firmware-misc-nonfree firmware-realtek firmware-atheros -y
 #Hypervisor
 echo "**INSTALLING HYPERVISOR**"
 apt install qemu-kvm libvirt0 bridge-utils libvirt-daemon-system -y
 gpasswd libvirt -a emperor
 systemctl disable --now libvirtd
 touch /etc/modprobe.d/kvm.conf
-#Nested Intel processors
-#echo 'options kvm_intel nested=1' >> /etc/modprobe.d/kvm.conf
-#/sbin/modprobe -r kvm_intel
-#/sbin/modprobe kvm_intel
-#Nested AMD processors
-#echo 'options kvm_amd nested=1' >> /etc/modprobe.d/kvm.conf
-#/sbin/modprobe -r kvm_amd
-#/sbin/modprobe kvm_amd nested=1
 virsh net-autostart default
 #Directories
 echo "**CREATING DIRECTORIES**"
