@@ -84,6 +84,30 @@ rm -v /etc/systemd/timesyncd.conf
 printf '[Time]
 NTP=a.st1.ntp.br' > /etc/systemd/timesyncd.conf
 )}
+rm -v /etc/network/interfaces
+{(
+printf 'source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# NIC0
+auto nic0
+iface nic0 inet static
+bridge_ports eth0
+bridge_hw eth0
+address 172.16.10.12/24
+gateway 172.16.10.1
+
+# VSW0
+auto vsw0
+iface vsw0 inet static
+bridge_ports zombie0
+bridge_hw zombie0
+address 10.0.0.62/26' > /etc/network/interfaces
+)}
+
 cp -v exports /etc
 
 cp -v avscan.sh /etc/scripts/scheduled
