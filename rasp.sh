@@ -67,15 +67,31 @@ systemctl disable --now nfs-kernel-server
 {(
 printf '#!/bin/bash
 # Mount
-#mount SRV01.vsw0:/mnt/Local/Pool-A/Files /mnt/Services/Service/Type/0/
+#mount -U 74127341-e83a-4843-8c94-6c2de702bef9 /mnt/Local/Container-A
+#sleep 5
+# Swap
+#sysctl vm.swappiness=8 #=1278M
+#swapon /swap/swapfile
+# Interfaces
+modprobe dummy
+ip link add zombie0 type dummy
+ip link set zombie0 address 52:54:00:e6:21:4c
 # Services
-#systemctl restart service
-#' > /etc/scripts/startup.sh
+#systemctl restart libvirtd
+#systemctl restart smbd
+#systemctl restart nfs-kernel-server
+# Virtual Machines
+#virsh start VM01
+# Tunnels
+#sleep 120
+#(
+#ssh -f -N -T -R 2222:localhost:26 -p 4634 emperor@strychnine.duckdns.org -o StrictHostKeyChecking=false &
+#)' > /etc/scripts/startup.sh
 )}
 chmod +x /etc/scripts/startup.sh
 {(
 printf '#!/bin/sh
-#/etc/scripts/startup.sh
+/etc/scripts/startup.sh
 #' > /etc/rc.local
 )}
 chmod 755 /etc/rc.local
