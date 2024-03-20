@@ -202,22 +202,10 @@ virsh backup-begin --domain VM01 --backupxml /etc/scripts/scheduled/virsh/VM01.x
 sleep 300
 virsh domjobinfo VM01 --completed > /var/log/virsh/VM01-`date +%F_%T`.log' > /etc/scripts/scheduled/sync.sh
 chmod +x /etc/scripts/scheduled/sync.sh
-cp -v VM.xml /etc/scripts/scheduled
-
-
-rm -v /etc/network/interfaces
-cp -v interfaces /etc/network
-rm -v /etc/samba/smb.conf
-cp -v smb.conf /etc/samba
-rm -v /etc/ssh/sshd_config
-cp -v sshd_config /etc/ssh
-rm -v /etc/motd
-cp -v useful /home/emperor/.useful
-touch /etc/motd
 chmod 700 /home/emperor/.ssh
-su - emperor -c "echo |touch /home/emperor/.ssh/authorized_keys"
+su - emperor -c "echo | touch /home/emperor/.ssh/authorized_keys"
 chmod 600 /home/emperor/.ssh/authorized_keys
-#su - emperor -c "echo |ssh-keygen -t rsa -b 4096 -N '' <<<$'\n'" > /dev/null 2>&1
+#su - emperor -c "echo | ssh-keygen -t rsa -b 4096 -N '' <<<$'\n'" > /dev/null 2>&1
 chmod 600 /root/.isolation
 chmod 600 /root/.crypt
 chmod 600 /root/.ssh
@@ -230,11 +218,6 @@ chmod 600 /root/.ssh/authorized_keys
 echo "**CLEANING UP**"
 apt autoremove -y
 
-#End
-echo "**END**"
-#Manual settings
-echo "1 - Adjust network nics according to the environment
-2 - Add zabbix server ip address in /etc/zabbix/zabbix_agentd.conf 
-3 - Manually configure samba users and their respective passwords"
+echo "End"
 su - emperor
 #
