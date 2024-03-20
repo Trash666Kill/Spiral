@@ -86,7 +86,7 @@ ip link set zombie0 address 52:54:00:e6:21:4c
 #sleep 120
 #(
 #ssh -f -N -T -R 2222:localhost:26 -p 4634 emperor@strychnine.duckdns.org -o StrictHostKeyChecking=false &
-#)' > /etc/scripts/startup.sh
+)' > /etc/scripts/startup.sh
 )}
 chmod +x /etc/scripts/startup.sh
 {(
