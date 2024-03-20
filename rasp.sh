@@ -91,8 +91,7 @@ ip link set zombie0 address 52:54:00:e6:21:4c
 chmod +x /etc/scripts/startup.sh
 {(
 printf '#!/bin/sh
-/etc/scripts/startup.sh
-#' > /etc/rc.local
+/etc/scripts/startup.sh' > /etc/rc.local
 )}
 chmod 755 /etc/rc.local
 rm -v /etc/systemd/timesyncd.conf
@@ -145,7 +144,9 @@ Subsystem       sftp    /usr/lib/openssh/sftp-server' > /etc/ssh/sshd_config
 )}
 chmod 644 /etc/ssh/sshd_config
 rm -v /etc/motd && touch /etc/motd
-cp -v exports /etc
+{(
+printf '#/mnt/Local/Container-A 10.0.0.1(rw,sync,crossmnt,no_subtree_check,no_root_squash)' > /etc/exports
+)}
 
 cp -v avscan.sh /etc/scripts/scheduled
 chmod +x /etc/scripts/scheduled/avscan.sh
