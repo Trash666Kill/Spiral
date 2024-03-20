@@ -107,13 +107,17 @@ printf 'source /etc/network/interfaces.d/*
 auto lo
 iface lo inet loopback
 
+# Default network interface
+allow-hotplug eth0
+iface eth0 inet dhcp
+
 # NIC0
-auto nic0
-iface nic0 inet static
-bridge_ports eth0
-bridge_hw eth0
-address 172.16.10.12/24
-gateway 172.16.10.1
+#auto nic0
+#iface nic0 inet static
+#bridge_ports eth0
+#bridge_hw eth0
+#address 172.16.10.2/24
+#gateway 172.16.10.1
 
 # VSW0
 auto vsw0
