@@ -196,7 +196,7 @@ done
 sleep 5
 virsh backup-begin --domain VM01 --backupxml /etc/scripts/scheduled/virsh/VM01.xml
 sleep 300
-virsh domjobinfo VM01 --completed > /var/log/virsh/VM01-`date +%F_%T`.log' /etc/scripts/scheduled/sync.sh
+virsh domjobinfo VM01 --completed > /var/log/virsh/VM01-`date +%F_%T`.log' > /etc/scripts/scheduled/sync.sh
 chmod +x /etc/scripts/scheduled/sync.sh
 cp -v VM.xml /etc/scripts/scheduled
 
