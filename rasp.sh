@@ -64,19 +64,35 @@ chown emperor:emperor -R /home/emperor
 echo "**SETTING UP BASE**"
 systemctl disable --now smbd
 systemctl disable --now nfs-kernel-server
-systemctl disable --now zabbix-agent
-rm -v /etc/systemd/timesyncd.conf
-cp -v timesyncd.conf /etc/systemd
-cp -v exports /etc
-cp -v startup.sh /etc/scripts
+{(
+printf '#!/bin/bash
+# Mount
+#mount SRV01.vsw0:/mnt/Local/Pool-A/Files /mnt/Services/Service/Type/0/
+# Services
+#systemctl restart service
+#' > /etc/scripts/startup.sh
+)}
 chmod +x /etc/scripts/startup.sh
+{(
+printf '#!/bin/sh
+#/etc/scripts/startup.sh
+#' > /etc/rc.local
+)}
+chmod 755 /etc/rc.local
+rm -v /etc/systemd/timesyncd.conf
+{(
+printf '[Time]
+NTP=a.st1.ntp.br' > /etc/systemd/timesyncd.conf
+)}
+cp -v exports /etc
+
 cp -v avscan.sh /etc/scripts/scheduled
 chmod +x /etc/scripts/scheduled/avscan.sh
 cp -v sync.sh /etc/scripts/scheduled
 chmod +x /etc/scripts/scheduled/sync.sh
 cp -v VM.xml /etc/scripts/scheduled
-cp -v rc.local /etc
-chmod 755 /etc/rc.local
+
+
 rm -v /etc/network/interfaces
 cp -v interfaces /etc/network
 rm -v /etc/samba/smb.conf
