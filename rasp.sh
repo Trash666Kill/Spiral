@@ -217,7 +217,5 @@ chmod 600 /root/.ssh/authorized_keys
 #Cleaning up
 echo "**CLEANING UP**"
 apt autoremove -y
-
 echo "End"
 su - emperor
-#
