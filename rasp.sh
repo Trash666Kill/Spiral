@@ -65,6 +65,11 @@ echo "**SETTING UP BASE**"
 systemctl disable --now smbd
 systemctl disable --now nfs-kernel-server
 {(
+printf '#!/bin/sh
+/etc/scripts/startup.sh' > /etc/rc.local
+)}
+chmod 755 /etc/rc.local
+{(
 printf '#!/bin/bash
 # Mount
 #mount -U 74127341-e83a-4843-8c94-6c2de702bef9 /mnt/Local/Container-A
@@ -89,11 +94,6 @@ ip link set zombie0 address 52:54:00:e6:21:4c
 )' > /etc/scripts/startup.sh
 )}
 chmod +x /etc/scripts/startup.sh
-{(
-printf '#!/bin/sh
-/etc/scripts/startup.sh' > /etc/rc.local
-)}
-chmod 755 /etc/rc.local
 rm -v /etc/systemd/timesyncd.conf
 {(
 printf '[Time]
