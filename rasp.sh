@@ -107,7 +107,28 @@ bridge_ports zombie0
 bridge_hw zombie0
 address 10.0.0.62/26' > /etc/network/interfaces
 )}
+rm -v /etc/ssh/sshd_config
+{(
+printf 'Include /etc/ssh/sshd_config.d/*.conf
 
+#Port 22
+
+PubkeyAuthentication yes
+
+ChallengeResponseAuthentication no
+
+UsePAM yes
+
+X11Forwarding yes
+PrintMotd no
+PrintLastLog no
+
+AcceptEnv LANG LC_*
+
+Subsystem       sftp    /usr/lib/openssh/sftp-server' > /etc/ssh/sshd_config
+)}
+chmod 644 /etc/ssh/sshd_config
+rm -v /etc/motd && touch /etc/motd
 cp -v exports /etc
 
 cp -v avscan.sh /etc/scripts/scheduled
