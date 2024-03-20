@@ -1,5 +1,6 @@
 #!/bin/bash
 sleep 10
+echo "**ADDING NON-FREE REPOSITORIES**"
 rm -v /etc/apt/sources.list
 {(
 printf '#
