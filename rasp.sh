@@ -155,14 +155,17 @@ printf '#/mnt/Local/Container-A 10.0.0.1(rw,sync,crossmnt,no_subtree_check,no_ro
 )}
 {(
 printf '#!/bin/bash
-clamscan --recursive --infected --exclude=Backup --exclude=Virt --exclude=Temp/ISO --log=/var/log/clamav/daily/avscan-`date +%F_%T`.log --move=/root/.isolation /mnt/Local/Container-C
+hour=`date +%F_%T`
+clamscan --recursive --infected --exclude=Backup --exclude=Virt --exclude=Temp/ISO --log=/var/log/clamav/daily/avscan-"$hour".log --move=/root/.isolation /mnt/Local/Container-C
 find /root/.isolation -type f -mtime +7 -delete 
 find /var/log/clamav/daily -name "*.log" -type f -mtime +2 -delete' > /etc/scripts/scheduled/avscan.sh
 )}
 chmod +x /etc/scripts/scheduled/avscan.sh
 printf '#!/bin/bash
+date=`date +%F`
+hour=`date +%F_%T`
 # Mass of data
-su - emperor -c "rsync --bwlimit=20480 -ahx --delete --info=del,name,stats2 --log-file=/var/log/rsync/music-`date +%F_%T`.log /mnt/Local/Pool-A/Music/ /mnt/Local/Pool-B/Backup/SRV01/Pool-A/Music/"
+su - emperor -c "rsync --bwlimit=20480 -ahx --delete --info=del,name,stats2 --log-file=/var/log/rsync/music-"$hour".log /mnt/Local/Pool-A/Music/ /mnt/Local/Pool-B/Backup/SRV01/Pool-A/Music/"
 find /var/log/rsync -name "*.log" -type f -mtime +7 -delete
 sleep 5
 # Operating system settings
@@ -183,11 +186,11 @@ cp -v /etc/hosts .
 cp -rv /var/spool/cron/crontabs .
 cp -rv /home/emperor/Temp .
 cd ../
-tar -cvzf confbkp-`date +%F`.tar.gz confbkp > /dev/null 2>&1
-rm -v /mnt/Local/Pool-A/Backup/SRV01/Container-A/confbkp-`date +%F`.tar.gz
-cp -v confbkp-`date +%F`.tar.gz /mnt/Local/Pool-A/Backup/SRV01/Container-A
+tar -cvzf confbkp-"$date".tar.gz confbkp > /dev/null 2>&1
+rm -v /mnt/Local/Pool-A/Backup/SRV01/Container-A/confbkp-"$date".tar.gz
+cp -v confbkp-"$date".tar.gz /mnt/Local/Pool-A/Backup/SRV01/Container-A
 rm -r confbkp
-rm -v confbkp-`date +%F`.tar.gz
+rm -v confbkp-"$date".tar.gz
 find /mnt/Local/Pool-A/Backup/SRV01/Container-A -name "*.gz" -type f -mtime +15 -delete
 sleep 30
 # Virtual machines
@@ -202,7 +205,7 @@ done
 sleep 5
 virsh backup-begin --domain VM01 --backupxml /etc/scripts/scheduled/virsh/VM01.xml
 sleep 300
-virsh domjobinfo VM01 --completed > /var/log/virsh/VM01-`date +%F_%T`.log' > /etc/scripts/scheduled/sync.sh
+virsh domjobinfo VM01 --completed > /var/log/virsh/VM01-"$hour".log' > /etc/scripts/scheduled/sync.sh
 chmod +x /etc/scripts/scheduled/sync.sh
 chmod 700 /home/emperor/.ssh
 su - emperor -c "echo | touch /home/emperor/.ssh/authorized_keys"
