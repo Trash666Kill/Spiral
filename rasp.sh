@@ -71,6 +71,8 @@ printf '#!/bin/sh
 chmod 755 /etc/rc.local
 {(
 printf '#!/bin/bash
+# Red power LED - 1 = ON, 0 = OFF
+echo 0 | sudo tee /sys/class/leds/PWR/brightness
 # Mount
 #mount -U 74127341-e83a-4843-8c94-6c2de702bef9 /mnt/Local/Container-A
 #sleep 5
