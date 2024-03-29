@@ -41,6 +41,18 @@ echo "($x)
 case "$x" in
 1)
 apt install -qq $common $workstation $de
+echo "**SETTING UP THE DESKTOP ENVIRONMENT**"
+rm -v /etc/lightdm/lightdm-gtk-greeter.conf && cp -v lightdm-gtk-greeter.conf /etc/lightdm
+cp -v default.jpg /usr/share/wallpapers
+tar -xvf 01-Qogir.tar.xz -C /usr/share/icons > /dev/null 2>&1
+tar -xvf Arc-Dark.tar.xz -C /usr/share/themes > /dev/null 2>&1
+cp -v debian-swirl.png /usr/share/icons/default
+mkdir -pv /etc/X11/xorg.conf.d && cp -v 40-libinput.conf /etc/X11/xorg.conf.d
+echo "$USER"
+rm -r /home/$USER/.config && cp -r config /home/$USER/.config
+cp -v gtkrc-2.0 /home/$USER/.gtkrc-2.0
+chown $USER:$USER -R /home/$USER
+chown $USER:$USER /usr/share/wallpapers/default.jpg
 sleep 5s
 echo "Finished
 ================================================"
@@ -63,11 +75,11 @@ tar -xvf 01-Qogir.tar.xz -C /usr/share/icons > /dev/null 2>&1
 tar -xvf Arc-Dark.tar.xz -C /usr/share/themes > /dev/null 2>&1
 cp -v debian-swirl.png /usr/share/icons/default
 mkdir -pv /etc/X11/xorg.conf.d && cp -v 40-libinput.conf /etc/X11/xorg.conf.d
-#Emperor
-rm -r /home/emperor/.config && cp -r config /home/emperor/.config
-cp -v gtkrc-2.0 /home/emperor/.gtkrc-2.0
-chown emperor:emperor -R /home/emperor
-chown emperor:emperor /usr/share/wallpapers/default.jpg
+echo "$USER"
+rm -r /home/$USER/.config && cp -r config /home/$USER/.config
+cp -v gtkrc-2.0 /home/$USER/.gtkrc-2.0
+chown $USER:$USER -R /home/$USER
+chown $USER:$USER /usr/share/wallpapers/default.jpg
 echo "Finished
 ================================================"
 sleep 5s
