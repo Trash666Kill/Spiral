@@ -40,7 +40,28 @@ echo "($x)
 
 case "$x" in
 1)
-apt install -qq $common $workstation $de
+echo "**INSTALLING PACKAGES**"
+apt install -qq $common $workstation $de $hypervisor
+{
+while true; do
+clear
+gpasswd libvirt -a emperor
+touch /etc/modprobe.d/kvm.conf
+virsh net-autostart default
+cpu=$(lscpu | grep 'Vendor ID' | cut -f 2 -d ":" | awk '{$1=$1}1')
+echo "$cpu"
+case "$cpu" in
+GenuineIntel)
+#Nested Intel processors
+echo 'options kvm_intel nested=1' >> /etc/modprobe.d/kvm.conf
+/sbin/modprobe -r kvm_intel
+/sbin/modprobe kvm_intel
+sleep 5
+exit 0
+;;
+esac
+done
+}
 echo "**SETTING UP THE DESKTOP ENVIRONMENT**"
 rm -v /etc/lightdm/lightdm-gtk-greeter.conf && cp -v lightdm-gtk-greeter.conf /etc/lightdm
 cp -v default.jpg /usr/share/wallpapers
@@ -59,6 +80,7 @@ echo "Finished
 exit 0
 ;;
 2)
+echo "**INSTALLING PACKAGES**"
 apt install -qq $common $workstation $server
 sleep 5s
 {
