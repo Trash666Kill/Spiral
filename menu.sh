@@ -40,11 +40,11 @@ echo "($x)
 
 case "$x" in
 1)
-echo "**INSTALLING PACKAGES**"
+echo '**INSTALLING PACKAGES**'
 apt install -qq $common $workstation $de $hypervisor
 {
 user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
-echo "**CREATING DIRECTORIES**"
+echo '**CREATING DIRECTORIES**'
 mkdir -pv /etc/scripts/scheduled/virsh
 mkdir -pv /var/log/clamav/daily
 mkdir -v /var/log/virsh
@@ -67,7 +67,7 @@ mkdir -v /home/$user/.ssh
 mkdir -v /root/.ssh
 chown $user:$user -R /home/$user
 #Conf Base
-echo "**SETTING UP BASE**"
+echo '**SETTING UP BASE**'
 systemctl disable --now nfs-kernel-server
 {(
     printf '#!/bin/sh
@@ -125,7 +125,7 @@ esac
 done
 }
 user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
-echo "**SETTING UP THE DESKTOP ENVIRONMENT**"
+echo '**SETTING UP THE DESKTOP ENVIRONMENT**'
 rm -v /etc/lightdm/lightdm-gtk-greeter.conf && cp -v lightdm-gtk-greeter.conf /etc/lightdm
 cp -v default.jpg /usr/share/wallpapers
 tar -xvf 01-Qogir.tar.xz -C /usr/share/icons > /dev/null 2>&1
@@ -138,12 +138,12 @@ cp -v gtkrc-2.0 /home/$user/.gtkrc-2.0
 chown $user:$user -R /home/$user
 chown $user:$user /usr/share/wallpapers/default.jpg
 sleep 5s
-echo "Finished
-================================================"
+echo 'Finished
+================================================'
 exit 0
 ;;
 2)
-echo "**INSTALLING PACKAGES**"
+echo '**INSTALLING PACKAGES**'
 apt install -qq $common $workstation $server
 sleep 5s
 {
@@ -153,7 +153,7 @@ read -p "Do you want to install graphical interface? [y/n]" x
 echo "================================================"
 case "$x" in
 y)
-echo "**SETTING UP THE DESKTOP ENVIRONMENT**"
+echo '**SETTING UP THE DESKTOP ENVIRONMENT**'
 rm -v /etc/lightdm/lightdm-gtk-greeter.conf && cp -v lightdm-gtk-greeter.conf /etc/lightdm
 cp -v default.jpg /usr/share/wallpapers
 tar -xvf 01-Qogir.tar.xz -C /usr/share/icons > /dev/null 2>&1
