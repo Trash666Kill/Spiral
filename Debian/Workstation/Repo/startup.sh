@@ -1,30 +1,27 @@
 #!/bin/bash
-{(
-set -e
 # Mount
-cryptsetup luksOpen /dev/disk/by-uuid/898221be-388d-4b20-bfdc-74759afb8dce Container-A_crypt --key-file /root/.crypt/Container-A.key
-mount /dev/mapper/Container-A_crypt /mnt/Local/Container-A
-sshfs -p 26 emperor@SRV02:/mnt/Local/Container-A/Virt/Images /mnt/Remote/Servers/SRV02/Container-A/Virt/Images/ -o allow_other -o compression=no -o StrictHostKeyChecking=false
+mount -U 8217fdfc-41db-4ed1-af8a-580e69e49bf6 /mnt/Local/Container-A
+cryptsetup luksOpen /dev/disk/by-uuid/6382e4a3-5a30-4c02-bc05-354121e03dd7 USB-A_crypt --key-file /root/.crypt/6382e4a3-5a30-4c02-bc05-354121e03dd7.key
+mount /dev/mapper/USB-A_crypt /mnt/Local/USB/A
+sleep 5
+# Swap
+sysctl vm.swappiness=22 #=405,24MiB
+swapon /mnt/Local/Container-A/.swapfile
 # Interfaces
 modprobe dummy
 ip link add zombie0 type dummy
-ip link set zombie0 address 00:00:00:11:11:22
-#ip addr add 0.0.0.0/24 dev zombie0
-#ip link set dev zombie0 up
-#ETHTOOL_OPTS="speed 1000 duplex full autoneg off"
-# Routes
-#route del default enp7s0
-#ip route add default via 10.0.1.1 dev enp1s0
+ip link set zombie0 address 52:54:00:e6:21:4c
+# Firewall
+sysctl -w net.ipv4.ip_forward=1
+iptables -t nat -A POSTROUTING -s 10.0.0.62/26 -o nic0 -j MASQUERADE
 # Services
-#cpulimit -b -e clamscan -l 75 > /dev/null 2>&1
-systemctl restart libvirtd
 systemctl restart smbd
-systemctl restart zabbix-agent
 # Virtual Machines
 virsh start VM01
-#sleep 120
-#virsh start VM02
-)}
 # Tunnels
-#autossh -M 0 -N -R 2222:localhost:26 -p 4634 emperor@strychnine.duckdns.org -o StrictHostKeyChecking=false &
-#
+sleep 60
+socat TCP-LISTEN:4533,fork TCP:10.0.0.1:4533 &
+sleep 15
+(
+ssh -f -N -T -R 2222:localhost:26 -p 4634 emperor@strychnine.duckdns.org -o StrictHostKeyChecking=false &
+)

@@ -40,17 +40,9 @@ iface enp1s0 inet dhcp
 #bridge_stp on
 #bridge_fd 0.0
 
-# Crossover Conection
-# End-to-end connection between Alcatraz and Nugget via Crossover Cable
-# Point-A
-#auto enp1s0
-#iface enp1s0 inet static
-#address 10.0.0.1/24
-
 # VSW0
 #auto vsw0
 #iface vsw0 inet static
 #bridge_ports zombie0
 #bridge_hw zombie0
 #address 10.0.0.62/26
-#

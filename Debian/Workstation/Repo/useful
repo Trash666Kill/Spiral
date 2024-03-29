@@ -50,6 +50,15 @@ or
 # resize2fs /dev/sda2 * EXT4 Filesystem
 # e2fsck -f /dev/sda2 * EXT4 Filesystem
 
+Manipulate qcow2 images
+# modprobe nbd max_part=4
+# qemu-nbd --connect=/dev/nbd0 /mnt/Container-A/Virt/VM.qcow2
+# fdisk /dev/nbd0 -l
+# mount /dev/nbd0p1 /mnt/Temp
+# umount /mnt/Temp
+# qemu-nbd --disconnect /dev/nbd0
+# rmmod nbd
+
 Virsh
 # virsh autostart VM
 # virsh autostart VM --disable
