@@ -43,14 +43,15 @@ case "$x" in
 echo "**INSTALLING PACKAGES**"
 apt install -qq $common $workstation $de $hypervisor
 {
+user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
 echo "**CREATING DIRECTORIES**"
 mkdir -pv /etc/scripts/scheduled/virsh
 mkdir -pv /var/log/clamav/daily
 mkdir -v /var/log/virsh
 mkdir -v /var/log/rc.local
-chown emperor:emperor -R /var/log/rc.local
+chown $user:$user -R /var/log/rc.local
 mkdir -v /var/log/rsync
-chown emperor:emperor -R /var/log/rsync
+chown $user:$user -R /var/log/rsync
 mkdir -v /root/Temp
 mkdir -v /root/.isolation
 mkdir -v /root/.crypt
@@ -60,11 +61,11 @@ mkdir -v /mnt/Local/USB/B
 mkdir -v /mnt/Local/Container-A
 mkdir -v /mnt/Local/Container-B
 mkdir -pv /mnt/Remote/Servers
-chown emperor:emperor -R /mnt
-mkdir -v /home/emperor/Temp
-mkdir -v /home/emperor/.ssh
+chown $user:$user -R /mnt
+mkdir -v /home/$user/Temp
+mkdir -v /home/$user/.ssh
 mkdir -v /root/.ssh
-chown emperor:emperor -R /home/emperor
+chown $user:$user -R /home/$user
 #Conf Base
 echo "**SETTING UP BASE**"
 systemctl disable --now nfs-kernel-server
@@ -86,15 +87,16 @@ rm -v /etc/motd && touch /etc/motd
 {(
     printf '#/mnt/Local/Container-A 10.0.0.1(rw,sync,crossmnt,no_subtree_check,no_root_squash)' > /etc/exports
 )}
+user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
 cp -v avscan.sh /etc/scripts/scheduled && chmod +x /etc/scripts/scheduled/avscan.sh
 cp -v sync.sh /etc/scripts/scheduled && chmod +x /etc/scripts/scheduled/sync.sh
 cp -v useful /etc
-ln -s /etc/useful /home/emperor/.useful
+ln -s /etc/useful /home/$user/.useful
 ln -s /etc/useful /root/.useful
-chmod 700 /home/emperor/.ssh
-su - emperor -c "echo | touch /home/emperor/.ssh/authorized_keys"
-chmod 600 /home/emperor/.ssh/authorized_keys
-su - emperor -c "echo | ssh-keygen -t rsa -b 4096 -N '' <<<$'\n'" > /dev/null 2>&1
+chmod 700 /home/$user/.ssh
+su - $user -c "echo | touch /home/$user/.ssh/authorized_keys"
+chmod 600 /home/$user/.ssh/authorized_keys
+su - $user -c "echo | ssh-keygen -t rsa -b 4096 -N '' <<<$'\n'" > /dev/null 2>&1
 chmod 600 /root/.isolation
 chmod 600 /root/.crypt
 chmod 600 /root/.ssh
@@ -103,9 +105,10 @@ chmod 600 /root/.ssh/authorized_keys
 ssh-keygen -t rsa -b 4096 -N '' <<<$'\n' > /dev/null 2>&1
 }
 {
+user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
 while true; do
 clear
-gpasswd libvirt -a emperor
+gpasswd libvirt -a $user
 touch /etc/modprobe.d/kvm.conf
 virsh net-autostart default
 cpu=$(lscpu | grep 'Vendor ID' | cut -f 2 -d ":" | awk '{$1=$1}1')
@@ -121,6 +124,7 @@ sleep 5
 esac
 done
 }
+user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
 echo "**SETTING UP THE DESKTOP ENVIRONMENT**"
 rm -v /etc/lightdm/lightdm-gtk-greeter.conf && cp -v lightdm-gtk-greeter.conf /etc/lightdm
 cp -v default.jpg /usr/share/wallpapers
@@ -128,11 +132,11 @@ tar -xvf 01-Qogir.tar.xz -C /usr/share/icons > /dev/null 2>&1
 tar -xvf Arc-Dark.tar.xz -C /usr/share/themes > /dev/null 2>&1
 cp -v debian-swirl.png /usr/share/icons/default
 mkdir -pv /etc/X11/xorg.conf.d && cp -v 40-libinput.conf /etc/X11/xorg.conf.d
-echo "$USER"
-rm -r /home/$USER/.config && cp -r config /home/$USER/.config
-cp -v gtkrc-2.0 /home/$USER/.gtkrc-2.0
-chown $USER:$USER -R /home/$USER
-chown $USER:$USER /usr/share/wallpapers/default.jpg
+echo "$user"
+rm -r /home/$user/.config && cp -r config /home/$user/.config
+cp -v gtkrc-2.0 /home/$user/.gtkrc-2.0
+chown $user:$user -R /home/$user
+chown $user:$user /usr/share/wallpapers/default.jpg
 sleep 5s
 echo "Finished
 ================================================"
@@ -145,7 +149,7 @@ sleep 5s
 {
 while true; do
 clear
-read -p "Deseja instalar interface gráfica? [y/n]" x
+read -p "Do you want to install graphical interface? [y/n]" x
 echo "================================================"
 case "$x" in
 y)
