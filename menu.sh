@@ -43,6 +43,66 @@ case "$x" in
 echo "**INSTALLING PACKAGES**"
 apt install -qq $common $workstation $de $hypervisor
 {
+echo "**CREATING DIRECTORIES**"
+mkdir -pv /etc/scripts/scheduled/virsh
+mkdir -pv /var/log/clamav/daily
+mkdir -v /var/log/virsh
+mkdir -v /var/log/rc.local
+chown emperor:emperor -R /var/log/rc.local
+mkdir -v /var/log/rsync
+chown emperor:emperor -R /var/log/rsync
+mkdir -v /root/Temp
+mkdir -v /root/.isolation
+mkdir -v /root/.crypt
+mkdir -v /mnt/Temp
+mkdir -pv /mnt/Local/USB/A
+mkdir -v /mnt/Local/USB/B
+mkdir -v /mnt/Local/Container-A
+mkdir -v /mnt/Local/Container-B
+mkdir -pv /mnt/Remote/Servers
+chown emperor:emperor -R /mnt
+mkdir -v /home/emperor/Temp
+mkdir -v /home/emperor/.ssh
+mkdir -v /root/.ssh
+chown emperor:emperor -R /home/emperor
+#Conf Base
+echo "**SETTING UP BASE**"
+systemctl disable --now nfs-kernel-server
+{(
+    printf '#!/bin/sh
+/etc/scripts/startup.sh' > /etc/rc.local
+)}
+chmod 755 /etc/rc.local
+cp -v startup.sh /etc/scripts && chmod +x /etc/scripts/startup.sh
+rm -v /etc/systemd/timesyncd.conf
+{(
+    printf '[Time]
+NTP=a.st1.ntp.br' > /etc/systemd/timesyncd.conf
+)}
+rm -v /etc/network/interfaces && cp -v interfaces /etc/network
+rm -v /etc/ssh/sshd_config && cp -v sshd_config /etc/ssh
+chmod 644 /etc/ssh/sshd_config
+rm -v /etc/motd && touch /etc/motd
+{(
+    printf '#/mnt/Local/Container-A 10.0.0.1(rw,sync,crossmnt,no_subtree_check,no_root_squash)' > /etc/exports
+)}
+cp -v avscan.sh /etc/scripts/scheduled && chmod +x /etc/scripts/scheduled/avscan.sh
+cp -v sync.sh /etc/scripts/scheduled && chmod +x /etc/scripts/scheduled/sync.sh
+cp -v useful /etc
+ln -s /etc/useful /home/emperor/.useful
+ln -s /etc/useful /root/.useful
+chmod 700 /home/emperor/.ssh
+su - emperor -c "echo | touch /home/emperor/.ssh/authorized_keys"
+chmod 600 /home/emperor/.ssh/authorized_keys
+su - emperor -c "echo | ssh-keygen -t rsa -b 4096 -N '' <<<$'\n'" > /dev/null 2>&1
+chmod 600 /root/.isolation
+chmod 600 /root/.crypt
+chmod 600 /root/.ssh
+touch /root/.ssh/authorized_keys
+chmod 600 /root/.ssh/authorized_keys
+ssh-keygen -t rsa -b 4096 -N '' <<<$'\n' > /dev/null 2>&1
+}
+{
 while true; do
 clear
 gpasswd libvirt -a emperor
@@ -57,7 +117,6 @@ echo 'options kvm_intel nested=1' >> /etc/modprobe.d/kvm.conf
 /sbin/modprobe -r kvm_intel
 /sbin/modprobe kvm_intel
 sleep 5
-exit 0
 ;;
 esac
 done
