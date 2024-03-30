@@ -51,22 +51,22 @@ systemctl disable --now nfs-kernel-server
 /etc/scripts/startup.sh' > /etc/rc.local
 )}
 chmod 755 /etc/rc.local
-cp -v startup.sh /etc/scripts && chmod +x /etc/scripts/startup.sh
+cp -v startup.sh /etc/scripts; chmod +x /etc/scripts/startup.sh
 rm -v /etc/systemd/timesyncd.conf
 {(
     printf '[Time]
 NTP=a.st1.ntp.br' > /etc/systemd/timesyncd.conf
 )}
-rm -v /etc/network/interfaces && cp -v interfaces /etc/network
-rm -v /etc/ssh/sshd_config && cp -v sshd_config /etc/ssh
+rm -v /etc/network/interfaces; cp -v interfaces /etc/network
+rm -v /etc/ssh/sshd_config; cp -v sshd_config /etc/ssh
 chmod 644 /etc/ssh/sshd_config
 rm -v /etc/motd && touch /etc/motd
 {(
     printf '#/mnt/Local/Container-A 10.0.0.1(rw,sync,crossmnt,no_subtree_check,no_root_squash)' > /etc/exports
 )}
 user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
-cp -v avscan.sh /etc/scripts/scheduled && chmod +x /etc/scripts/scheduled/avscan.sh
-cp -v sync.sh /etc/scripts/scheduled && chmod +x /etc/scripts/scheduled/sync.sh
+cp -v avscan.sh /etc/scripts/scheduled; chmod +x /etc/scripts/scheduled/avscan.sh
+cp -v sync.sh /etc/scripts/scheduled; chmod +x /etc/scripts/scheduled/sync.sh
 cp -v useful /etc
 ln -s /etc/useful /home/$user/.useful
 ln -s /etc/useful /root/.useful
@@ -83,12 +83,12 @@ ssh-keygen -t rsa -b 4096 -N '' <<<$'\n' > /dev/null 2>&1
 }
 de(){
 echo '**SETTING UP THE DESKTOP ENVIRONMENT**'
-rm -v /etc/lightdm/lightdm-gtk-greeter.conf && cp -v lightdm-gtk-greeter.conf /etc/lightdm
+rm -v /etc/lightdm/lightdm-gtk-greeter.conf; cp -v lightdm-gtk-greeter.conf /etc/lightdm
 cp -v default.jpg /usr/share/wallpapers
 tar -xvf 01-Qogir.tar.xz -C /usr/share/icons > /dev/null 2>&1
 tar -xvf Arc-Dark.tar.xz -C /usr/share/themes > /dev/null 2>&1
 cp -v debian-swirl.png /usr/share/icons/default
-mkdir -pv /etc/X11/xorg.conf.d && cp -v 40-libinput.conf /etc/X11/xorg.conf.d
+mkdir -pv /etc/X11/xorg.conf.d; cp -v 40-libinput.conf /etc/X11/xorg.conf.d
 echo "$user"
 rm -r /home/$user/.config; cp -r config /home/$user/.config
 cp -v gtkrc-2.0 /home/$user/.gtkrc-2.0
