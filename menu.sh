@@ -1,5 +1,5 @@
 #!/bin/bash
-cd $PWD
+cd $PWD/Repo
 # Packages
 common="sudo vim sshfs nfs-common systemd-timesyncd unzip xz-utils sshpass bzip2 python3-apt screen htop stress hdparm tree curl wget net-tools tcpdump traceroute iperf ethtool geoip-bin speedtest-cli nload autossh socat"
 
@@ -13,7 +13,7 @@ firmware="firmware-misc-nonfree firmware-realtek firmware-atheros"
 
 hypervisor="qemu-kvm libvirt0 bridge-utils libvirt-daemon-system"
 
-de="xorg xserver-xorg-input-libinput xserver-xorg-input-evdev brightnessctl xserver-xorg-input-mouse xserver-xorg-input-synaptics lightdm openbox obconf lxterminal lxpanel lxhotkey-gtk lxtask lxsession-logout lxappearance lxrandr progress arc-theme nitrogen ffmpegthumbnailer gpicview evince galculator gnome-screenshot l3afpad alacarte gpick compton pcmanfm unrar firefox-esr engrampa gparted gnome-disk-utility baobab virt-manager ssh-askpass"
+de="xorg xserver-xorg-input-libinput xserver-xorg-input-evdev brightnessctl xserver-xorg-input-mouse xserver-xorg-input-synaptics lightdm openbox obconf lxterminal lxpanel lxhotkey-gtk lxtask lxsession-logout lxappearance lxrandr progress arc-theme nitrogen ffmpegthumbnailer gpicview evince galculator gnome-screenshot l3afpad alacarte gpick compton pcmanfm firefox-esr engrampa gparted gnome-disk-utility baobab virt-manager ssh-askpass"
 
 minide="xorg openbox"
 # Environment Setting
@@ -69,6 +69,7 @@ mkdir -v /root/.ssh
 chown $user:$user -R /home/$user
 #Conf Base
 echo '**SETTING UP BASE**'
+/sbin/usermod -aG sudo emperor
 systemctl disable --now nfs-kernel-server
 {(
     printf '#!/bin/sh
@@ -178,6 +179,7 @@ mkdir -v /root/.ssh
 chown $user:$user -R /home/$user
 #Conf Base
 echo '**SETTING UP BASE**'
+/sbin/usermod -aG sudo emperor
 systemctl disable --now nfs-kernel-server
 {(
     printf '#!/bin/sh
@@ -267,7 +269,7 @@ deb-src http://security.debian.org/debian-security bookworm-security main non-fr
 deb http://deb.debian.org/debian/ bookworm-updates main non-free non-free-firmware
 deb-src http://deb.debian.org/debian/ bookworm-updates main non-free non-free-firmware
 #
-#deb http://deb.debian.org/debian bookworm-backports main non-free 
+#deb http://deb.debian.org/debian bookworm-backports main non-free
 #' > /etc/apt/sources.list
 )}
 apt update && apt upgrade -y
