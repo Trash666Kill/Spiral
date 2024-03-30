@@ -19,56 +19,6 @@ minide="xorg openbox"
 # Environment Setting
 user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
 directories(){
-mkdir -pv /etc/scripts/scheduled/virsh
-mkdir -pv /var/log/clamav/daily
-mkdir -v /var/log/virsh
-mkdir -v /var/log/rc.local
-chown $user:$user -R /var/log/rc.local
-mkdir -v /var/log/rsync
-chown $user:$user -R /var/log/rsync
-mkdir -v /root/Temp
-mkdir -v /root/.isolation
-mkdir -v /root/.crypt
-mkdir -v /mnt/Temp
-mkdir -pv /mnt/Local/USB/A
-mkdir -v /mnt/Local/USB/B
-mkdir -v /mnt/Local/Container-A
-mkdir -v /mnt/Local/Container-B
-mkdir -pv /mnt/Remote/Servers
-chown $user:$user -R /mnt
-mkdir -v /home/$user/Temp
-mkdir -v /home/$user/.ssh
-mkdir -v /root/.ssh
-chown $user:$user -R /home/$user
-}
-# menu
-while true; do
-clear
-echo '================================================
-Welcome to the post installation script for Debian minimal. Choose the type of installation you want:
-
-1) Workstation
-
-2) Server
-
-3) Virtual machine
-
-4) Raspberry Pi
-
-5) Exit
-
-================================================'
-
-read -p "Enter the desired installation type and start it by pressing the Enter key: " x
-echo "($x)
-================================================"
-
-case "$x" in
-1)
-echo '**INSTALLING PACKAGES**'
-apt install -qq $common $workstation $de $hypervisor
-{
-user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
 echo '**CREATING DIRECTORIES**'
 mkdir -pv /etc/scripts/scheduled/virsh
 mkdir -pv /var/log/clamav/daily
@@ -91,7 +41,8 @@ mkdir -v /home/$user/Temp
 mkdir -v /home/$user/.ssh
 mkdir -v /root/.ssh
 chown $user:$user -R /home/$user
-#Conf Base
+}
+base(){
 echo '**SETTING UP BASE**'
 /sbin/usermod -aG sudo emperor
 systemctl disable --now nfs-kernel-server
@@ -130,33 +81,7 @@ touch /root/.ssh/authorized_keys
 chmod 600 /root/.ssh/authorized_keys
 ssh-keygen -t rsa -b 4096 -N '' <<<$'\n' > /dev/null 2>&1
 }
-{
-echo '**SETTING UP HYPERVISOR**'
-user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
-while true; do
-clear
-gpasswd libvirt -a $user
-touch /etc/modprobe.d/kvm.conf
-virsh net-autostart default
-cpu=$(lscpu | grep 'Vendor ID' | cut -f 2 -d ":" | awk '{$1=$1}1')
-echo "$cpu"
-case "$cpu" in
-GenuineIntel)
-#Nested Intel processors
-echo 'options kvm_intel nested=1' >> /etc/modprobe.d/kvm.conf
-/sbin/modprobe -r kvm_intel
-/sbin/modprobe kvm_intel
-;;
-AuthenticAMD)
-echo 'options kvm_amd nested=1' >> /etc/modprobe.d/kvm.conf
-/sbin/modprobe -r kvm_amd
-/sbin/modprobe kvm_amd nested=1
-sleep 5
-;;
-esac
-done
-}
-user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
+de(){
 echo '**SETTING UP THE DESKTOP ENVIRONMENT**'
 rm -v /etc/lightdm/lightdm-gtk-greeter.conf && cp -v lightdm-gtk-greeter.conf /etc/lightdm
 cp -v default.jpg /usr/share/wallpapers
@@ -169,10 +94,72 @@ rm -r /home/$user/.config && cp -r config /home/$user/.config
 cp -v gtkrc-2.0 /home/$user/.gtkrc-2.0
 chown $user:$user -R /home/$user
 chown $user:$user /usr/share/wallpapers/default.jpg
-sleep 5s
+}
+# menu
+while true; do
+clear
+echo '================================================
+Welcome to the post installation script for Debian minimal. Choose the type of installation you want:
+
+1) Workstation
+
+2) Server
+
+3) Virtual machine
+
+4) Raspberry Pi
+
+5) Exit
+
+================================================'
+
+read -p "Enter the desired installation type and start it by pressing the Enter key: " x
+echo "($x)
+================================================"
+
+case "$x" in
+1)
+echo '**INSTALLING PACKAGES**'
+apt install -qq $common $workstation $de $hypervisor
+directories
+base
+{
+echo '**SETTING UP HYPERVISOR**'
+user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
+cpu=$(lscpu | grep 'Vendor ID' | cut -f 2 -d ":" | awk '{$1=$1}1')
+gpasswd libvirt -a $user
+touch /etc/modprobe.d/kvm.conf
+virsh net-autostart default
+while true; do
+clear
+echo "$cpu"
+case "$cpu" in
+GenuineIntel)
+#Nested Intel processors
+echo 'options kvm_intel nested=1' >> /etc/modprobe.d/kvm.conf
+/sbin/modprobe -r kvm_intel
+/sbin/modprobe kvm_intel
+sleep 5
+de
 echo 'Finished
 ================================================'
+sleep 5s
 exit 0
+;;
+AuthenticAMD)
+echo 'options kvm_amd nested=1' >> /etc/modprobe.d/kvm.conf
+/sbin/modprobe -r kvm_amd
+/sbin/modprobe kvm_amd nested=1
+sleep 5
+de
+echo 'Finished
+================================================'
+sleep 5s
+exit 0
+;;
+esac
+done
+}
 ;;
 2)
 echo '**INSTALLING PACKAGES**'
