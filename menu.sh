@@ -17,7 +17,31 @@ de="xorg xserver-xorg-input-libinput xserver-xorg-input-evdev brightnessctl xser
 
 minide="xorg openbox"
 # Environment Setting
-
+user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
+directories(){
+mkdir -pv /etc/scripts/scheduled/virsh
+mkdir -pv /var/log/clamav/daily
+mkdir -v /var/log/virsh
+mkdir -v /var/log/rc.local
+chown $user:$user -R /var/log/rc.local
+mkdir -v /var/log/rsync
+chown $user:$user -R /var/log/rsync
+mkdir -v /root/Temp
+mkdir -v /root/.isolation
+mkdir -v /root/.crypt
+mkdir -v /mnt/Temp
+mkdir -pv /mnt/Local/USB/A
+mkdir -v /mnt/Local/USB/B
+mkdir -v /mnt/Local/Container-A
+mkdir -v /mnt/Local/Container-B
+mkdir -pv /mnt/Remote/Servers
+chown $user:$user -R /mnt
+mkdir -v /home/$user/Temp
+mkdir -v /home/$user/.ssh
+mkdir -v /root/.ssh
+chown $user:$user -R /home/$user
+}
+# menu
 while true; do
 clear
 echo '================================================
@@ -107,7 +131,7 @@ chmod 600 /root/.ssh/authorized_keys
 ssh-keygen -t rsa -b 4096 -N '' <<<$'\n' > /dev/null 2>&1
 }
 {
-echo "**SETTING UP HYPERVISOR**"
+echo '**SETTING UP HYPERVISOR**'
 user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
 while true; do
 clear
