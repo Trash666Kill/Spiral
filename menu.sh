@@ -90,7 +90,7 @@ tar -xvf Arc-Dark.tar.xz -C /usr/share/themes > /dev/null 2>&1
 cp -v debian-swirl.png /usr/share/icons/default
 mkdir -pv /etc/X11/xorg.conf.d && cp -v 40-libinput.conf /etc/X11/xorg.conf.d
 echo "$user"
-rm -r /home/$user/.config && cp -r config /home/$user/.config
+rm -r /home/$user/.config; cp -r config /home/$user/.config
 cp -v gtkrc-2.0 /home/$user/.gtkrc-2.0
 chown $user:$user -R /home/$user
 chown $user:$user /usr/share/wallpapers/default.jpg
@@ -120,7 +120,7 @@ echo "($x)
 case "$x" in
 1)
 echo '**INSTALLING PACKAGES**'
-apt install -qq $common $workstation $de $hypervisor
+apt install -qq $common $workstation $de $hypervisor $firmware
 directories
 base
 {
@@ -132,7 +132,7 @@ touch /etc/modprobe.d/kvm.conf
 virsh net-autostart default
 while true; do
 clear
-echo "$cpu"
+echo "**$cpu**"
 case "$cpu" in
 GenuineIntel)
 #Nested Intel processors
@@ -157,6 +157,12 @@ echo 'Finished
 sleep 5s
 exit 0
 ;;
+*) echo "Unknown or unsupported CPU architecture"
+sleep 5
+de
+echo "Finished
+================================================"
+exit
 esac
 done
 }
