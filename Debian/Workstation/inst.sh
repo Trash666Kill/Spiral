@@ -150,7 +150,8 @@ echo "($x)
 case "$x" in
 1)
 echo '**INSTALLING PACKAGES**'
-apt install -qq $repo $common $workstation $de $hypervisor $firmware
+repo
+apt install -qq $common $workstation $de $hypervisor $firmware
 directories
 base
 {
@@ -200,7 +201,8 @@ done
 ;;
 2)
 echo '**INSTALLING PACKAGES**'
-apt install -qq $repo $common $workstation $hypervisor $firmware $server
+repo
+apt install -qq $common $workstation $hypervisor $firmware $server
 directories
 base
 {
