@@ -176,6 +176,7 @@ sleep 3
 exit 0
 ;;
 AuthenticAMD)
+#Nested AMD processors
 echo 'options kvm_amd nested=1' >> /etc/modprobe.d/kvm.conf
 /sbin/modprobe -r kvm_amd
 /sbin/modprobe kvm_amd nested=1
@@ -191,14 +192,14 @@ sleep 3
 de
 echo "Finished
 ================================================"
-exit
+exit 0
 esac
 done
 }
 ;;
 2)
 echo '**INSTALLING PACKAGES**'
-apt install -qq $repo $common $workstation $hypervisor $firmware
+apt install -qq $repo $common $workstation $hypervisor $firmware $server
 directories
 base
 {
