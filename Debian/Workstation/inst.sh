@@ -19,24 +19,15 @@ deb-src http://deb.debian.org/debian/ bookworm-updates main non-free non-free-fi
 #' > /etc/apt/sources.list
 )}
 }
-
 # Packages
 common="sudo vim sshfs nfs-common systemd-timesyncd unzip xz-utils sshpass bzip2 python3-apt screen htop stress hdparm tree curl wget net-tools tcpdump traceroute iperf ethtool geoip-bin speedtest-cli nload autossh socat"
-
 workstation="cryptsetup smartmontools uuid pigz passwd lm-sensors hdparm x11-xkb-utils bc fwupd tree pm-utils acpid cpulimit btrfs-progs ntfs-3g dosfstools rsync nfs-kernel-server"
-
 server="samba"
-
 graphics="nvidia-driver firmware-amd-graphics"
-
 firmware="firmware-misc-nonfree firmware-realtek firmware-atheros"
-
 hypervisor="qemu-kvm libvirt0 bridge-utils libvirt-daemon-system"
-
 de="xorg xserver-xorg-input-libinput xserver-xorg-input-evdev brightnessctl xserver-xorg-input-mouse xserver-xorg-input-synaptics lightdm openbox obconf lxterminal lxpanel lxhotkey-gtk lxtask lxsession-logout lxappearance lxrandr progress arc-theme nitrogen ffmpegthumbnailer gpicview evince galculator gnome-screenshot l3afpad alacarte gpick compton pcmanfm firefox-esr engrampa gparted gnome-disk-utility baobab virt-manager ssh-askpass"
-
 minide="xorg openbox"
-
 # Environment Setting
 user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
 directories(){
@@ -156,7 +147,6 @@ Welcome to the post installation script for Debian minimal. Choose the type of i
 read -p "Enter the desired installation type and start it by pressing the Enter key: " x
 echo "($x)
 ================================================"
-
 case "$x" in
 1)
 echo '**INSTALLING PACKAGES**'
