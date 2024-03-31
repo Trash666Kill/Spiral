@@ -221,6 +221,7 @@ sleep 3
 optde
 ;;
 AuthenticAMD)
+#Nested AMD processors
 echo 'options kvm_amd nested=1' >> /etc/modprobe.d/kvm.conf
 /sbin/modprobe -r kvm_amd
 /sbin/modprobe kvm_amd nested=1
