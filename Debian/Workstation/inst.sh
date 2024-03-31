@@ -116,13 +116,13 @@ y)
 de
 echo "Finished
 ================================================"
-sleep 5s
+sleep 3s
 exit 0
 ;;
 n)
 echo "Finished
 ================================================"
-sleep 5s
+sleep 3s
 exit 0
 ;;
 *) echo "Invalid option!"
@@ -168,22 +168,22 @@ GenuineIntel)
 echo 'options kvm_intel nested=1' >> /etc/modprobe.d/kvm.conf
 /sbin/modprobe -r kvm_intel
 /sbin/modprobe kvm_intel
-sleep 5
+sleep 3
 de
 echo 'Finished
 ================================================'
-sleep 5s
+sleep 3
 exit 0
 ;;
 AuthenticAMD)
 echo 'options kvm_amd nested=1' >> /etc/modprobe.d/kvm.conf
 /sbin/modprobe -r kvm_amd
 /sbin/modprobe kvm_amd nested=1
-sleep 5
+sleep 3
 de
 echo 'Finished
 ================================================'
-sleep 5s
+sleep 3
 exit 0
 ;;
 *) echo "Unknown or unsupported CPU architecture"
@@ -237,7 +237,7 @@ done
 3)
 echo "Leaving...
 ================================================"
-sleep 3s
+sleep 3
 clear
 exit 0
 ;;
