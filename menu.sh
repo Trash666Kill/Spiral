@@ -95,6 +95,43 @@ cp -v gtkrc-2.0 /home/$user/.gtkrc-2.0
 chown $user:$user -R /home/$user
 chown $user:$user /usr/share/wallpapers/default.jpg
 }
+minide(){
+user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
+while true; do
+clear
+read -p "Do you want to install graphical interface? [y/n]" x
+echo "================================================"
+case "$x" in
+y)
+echo '**INSTALLING DESKTOP ENVIRONMENT PACKAGES**'
+apt install -qq $de
+echo '**SETTING UP THE DESKTOP ENVIRONMENT**'
+rm -v /etc/lightdm/lightdm-gtk-greeter.conf && cp -v lightdm-gtk-greeter.conf /etc/lightdm
+cp -v default.jpg /usr/share/wallpapers
+tar -xvf 01-Qogir.tar.xz -C /usr/share/icons > /dev/null 2>&1
+tar -xvf Arc-Dark.tar.xz -C /usr/share/themes > /dev/null 2>&1
+cp -v debian-swirl.png /usr/share/icons/default
+mkdir -pv /etc/X11/xorg.conf.d && cp -v 40-libinput.conf /etc/X11/xorg.conf.d
+echo "$user"
+rm -r /home/$user/.config && cp -r config /home/$user/.config
+cp -v gtkrc-2.0 /home/$user/.gtkrc-2.0
+chown $user:$user -R /home/$user
+chown $user:$user /usr/share/wallpapers/default.jpg
+echo "Finished
+================================================"
+sleep 5s
+exit 0
+;;
+n)
+echo "Finished
+================================================"
+sleep 5s
+exit 0
+;;
+*) echo "Invalid option!"
+esac
+done
+}
 # menu
 while true; do
 clear
@@ -188,69 +225,24 @@ GenuineIntel)
 echo 'options kvm_intel nested=1' >> /etc/modprobe.d/kvm.conf
 /sbin/modprobe -r kvm_intel
 /sbin/modprobe kvm_intel
-sleep 5
-de
-echo 'Finished
-================================================'
-sleep 5s
-exit 0
+sleep 3
+minide
 ;;
 AuthenticAMD)
 echo 'options kvm_amd nested=1' >> /etc/modprobe.d/kvm.conf
 /sbin/modprobe -r kvm_amd
 /sbin/modprobe kvm_amd nested=1
-sleep 5
-de
-echo 'Finished
-================================================'
-sleep 5s
-exit 0
+sleep 3
+minide
 ;;
 *) echo "Unknown or unsupported CPU architecture"
 sleep 3
-de
-echo "Finished
-================================================"
-exit
+minide
 esac
 done
 }
 {
-user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
-while true; do
-clear
-read -p "Do you want to install graphical interface? [y/n]" x
-echo "================================================"
-case "$x" in
-y)
-echo '**INSTALLING DESKTOP ENVIRONMENT PACKAGES**'
-apt install -qq $de
-echo '**SETTING UP THE DESKTOP ENVIRONMENT**'
-rm -v /etc/lightdm/lightdm-gtk-greeter.conf && cp -v lightdm-gtk-greeter.conf /etc/lightdm
-cp -v default.jpg /usr/share/wallpapers
-tar -xvf 01-Qogir.tar.xz -C /usr/share/icons > /dev/null 2>&1
-tar -xvf Arc-Dark.tar.xz -C /usr/share/themes > /dev/null 2>&1
-cp -v debian-swirl.png /usr/share/icons/default
-mkdir -pv /etc/X11/xorg.conf.d && cp -v 40-libinput.conf /etc/X11/xorg.conf.d
-echo "$user"
-rm -r /home/$user/.config && cp -r config /home/$user/.config
-cp -v gtkrc-2.0 /home/$user/.gtkrc-2.0
-chown $user:$user -R /home/$user
-chown $user:$user /usr/share/wallpapers/default.jpg
-echo "Finished
-================================================"
-sleep 5s
-exit 0
-;;
-n)
-echo "Finished
-================================================"
-sleep 5s
-exit 0
-;;
-*) echo "Invalid option!"
-esac
-done
+
 }
 ;;
 3)
