@@ -114,6 +114,7 @@ read -p "Do you want to install graphical interface? [y/n]" x
 echo "================================================"
 case "$x" in
 y)
+apt install -qq $de
 de
 echo "Finished
 ================================================"
