@@ -57,6 +57,7 @@ base(){
 echo '**SETTING UP BASE**'
 /sbin/usermod -aG sudo emperor
 systemctl disable --now nfs-kernel-server
+systemctl disable --now smbd
 {(
     printf '#!/bin/sh
 /etc/scripts/startup.sh' > /etc/rc.local
