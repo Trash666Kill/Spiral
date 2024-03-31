@@ -95,7 +95,7 @@ cp -v gtkrc-2.0 /home/$user/.gtkrc-2.0
 chown $user:$user -R /home/$user
 chown $user:$user /usr/share/wallpapers/default.jpg
 }
-optde()){
+optde(){
 while true; do
 clear
 read -p "Do you want to install graphical interface? [y/n]" x
@@ -226,9 +226,6 @@ sleep 3
 optde
 esac
 done
-}
-{
-
 }
 ;;
 3)
