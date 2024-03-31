@@ -9,7 +9,7 @@ Global {
   transparent=1
   background=0
   tintcolor=#2F343F
-  alpha=220
+  alpha=255
   usefontcolor=0
   usefontsize=0
   fontcolor=#000000
@@ -66,6 +66,18 @@ Plugin {
     DisplayRAM=1
     CPUColor=#0000FF
     RAMColor=#FF0000
+  }
+}
+Plugin {
+  type=thermal
+  Config {
+    NormalColor=#00ff00
+    Warning1Color=#fca503
+    Warning2Color=#fc0303
+    AutomaticLevels=0
+    Warning1Temp=80
+    Warning2Temp=90
+    AutomaticSensor=1
   }
 }
 Plugin {
