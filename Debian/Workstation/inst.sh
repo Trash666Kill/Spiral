@@ -26,7 +26,7 @@ server="samba"
 graphics="nvidia-driver firmware-amd-graphics"
 firmware="firmware-misc-nonfree firmware-realtek firmware-atheros"
 hypervisor="qemu-kvm libvirt0 bridge-utils libvirt-daemon-system"
-de="xorg xserver-xorg-input-libinput xserver-xorg-input-evdev brightnessctl xserver-xorg-input-mouse xserver-xorg-input-synaptics lightdm openbox obconf lxterminal lxpanel lxhotkey-gtk lxtask lxsession-logout lxappearance lxrandr progress arc-theme nitrogen ffmpegthumbnailer gpicview evince galculator gnome-screenshot l3afpad alacarte gpick compton pcmanfm firefox-esr engrampa gparted gnome-disk-utility baobab virt-manager ssh-askpass"
+de="xorg xserver-xorg-input-libinput xserver-xorg-input-evdev brightnessctl xserver-xorg-input-mouse xserver-xorg-input-synaptics lightdm openbox obconf lxterminal lxpanel lxhotkey-gtk lxtask lxsession-logout lxappearance lxrandr numlockx progress arc-theme nitrogen ffmpegthumbnailer gpicview evince galculator gnome-screenshot l3afpad alacarte gpick compton pcmanfm firefox-esr engrampa gparted gnome-disk-utility baobab virt-manager ssh-askpass"
 # Environment Setting
 user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
 directories(){
@@ -158,7 +158,7 @@ base
 {
 echo '**SETTING UP HYPERVISOR**'
 user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
-cpu=$(lscpu | grep 'Vendor ID' | cut -f 2 -d ":" | awk '{$1=$1}1')
+cpu=$(lscpu | grep 'Vendor ID' | cut -f 2 -d ":" | sed -n 1p | awk '{$1=$1}1')
 gpasswd libvirt -a $user
 touch /etc/modprobe.d/kvm.conf
 virsh net-autostart default
@@ -209,7 +209,7 @@ base
 {
 echo '**SETTING UP HYPERVISOR**'
 user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
-cpu=$(lscpu | grep 'Vendor ID' | cut -f 2 -d ":" | awk '{$1=$1}1')
+cpu=$(lscpu | grep 'Vendor ID' | cut -f 2 -d ":" | sed -n 1p | awk '{$1=$1}1')
 gpasswd libvirt -a $user
 touch /etc/modprobe.d/kvm.conf
 virsh net-autostart default
