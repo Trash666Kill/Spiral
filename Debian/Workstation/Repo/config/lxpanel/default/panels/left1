@@ -8,7 +8,7 @@ Global {
   align=center
   transparent=1
   background=0
-  tintcolor=#000000
+  tintcolor=#202020
   alpha=220
   usefontcolor=0
   usefontsize=0
