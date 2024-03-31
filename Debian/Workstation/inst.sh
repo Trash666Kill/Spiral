@@ -55,12 +55,12 @@ chown $user:$user -R /home/$user
 }
 base(){
 echo '**SETTING UP BASE**'
-/sbin/usermod -aG sudo emperor
+/sbin/usermod -aG sudo $user
 systemctl disable --now nfs-kernel-server
 systemctl disable --now smbd
 {(
     printf '#!/bin/sh
-/etc/scripts/startup.sh' > /etc/rc.local
+#/etc/scripts/startup.sh' > /etc/rc.local
 )}
 chmod 755 /etc/rc.local
 cp -v startup.sh /etc/scripts; chmod +x /etc/scripts/startup.sh
