@@ -8,6 +8,7 @@ sleep 5
 sysctl vm.swappiness=22 #=405,24MiB
 swapon /mnt/Local/Container-A/.swapfile
 # Interfaces
+ethtool -s enp2s0 wol g
 modprobe dummy
 ip link add zombie0 type dummy
 ip link set zombie0 address 52:54:00:e6:21:4c
