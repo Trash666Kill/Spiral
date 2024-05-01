@@ -88,12 +88,6 @@ allow-hotplug enp1s0
 iface enp1s0 inet dhcp
 
 # NIC0
-#auto enp1s0
-#iface enp1s0 inet static
-#address 172.16.10.2/24
-#gateway 172.16.10.1
-
-# NIC1
 #auto enp7s0
 #iface enp7s0 inet static
 #address 10.0.0.0/26
