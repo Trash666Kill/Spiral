@@ -59,6 +59,7 @@ update-grub
 {(
 printf '#!/bin/bash
 # Interfaces
+#NIC0
 #ifconfig enp1s0 10.0.0.1/26
 #ip route add default via 10.0.0.62 dev enp1s0
 # Mount
