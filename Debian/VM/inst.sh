@@ -58,9 +58,6 @@ chmod 644 /etc/default/grub
 update-grub
 {(
 printf '#!/bin/bash
-# Interfaces
-#NIC0
-#ifconfig enp1s0 10.0.0.1/26
 # Mount
 #mount SRV01.vsw0:/mnt/Local/Pool-A/Files /mnt/Services/Service/Type/0/
 # Services
@@ -80,6 +77,28 @@ printf '[Time]
 NTP=a.st1.ntp.br' > /etc/systemd/timesyncd.conf
 )}
 rm -v /etc/network/interfaces
+{(
+printf 'source /etc/network/interfaces.d/*
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# Virtual network interface
+allow-hotplug enp1s0
+iface enp1s0 inet dhcp
+
+# NIC0
+#auto enp1s0
+#iface enp1s0 inet static
+#address 172.16.10.2/24
+#gateway 172.16.10.1
+
+# NIC1
+#auto enp7s0
+#iface enp7s0 inet static
+#address 10.0.0.0/26
+#' > /etc/network/interfaces
+)}
 rm -v /etc/ssh/sshd_config
 {(
 printf 'Include /etc/ssh/sshd_config.d/*.conf
