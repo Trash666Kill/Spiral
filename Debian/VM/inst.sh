@@ -91,6 +91,7 @@ iface enp1s0 inet dhcp
 #auto enp7s0
 #iface enp7s0 inet static
 #address 10.0.0.0/26
+#gateway 9.9.9.9
 #' > /etc/network/interfaces
 )}
 rm -v /etc/ssh/sshd_config
