@@ -17,6 +17,7 @@ deb-src http://deb.debian.org/debian/ bookworm-updates main non-free non-free-fi
 #
 #deb http://deb.debian.org/debian bookworm-backports main non-free
 #' > /etc/apt/sources.list
+apt update
 )}
 }
 # Packages
