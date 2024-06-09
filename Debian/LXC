@@ -1,4 +1,5 @@
 #!/bin/bash
+passwd root
 adduser emperor
 sleep 10
 echo "**ADDING NON-FREE REPOSITORIES**"
