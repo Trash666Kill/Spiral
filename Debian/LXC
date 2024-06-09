@@ -51,8 +51,8 @@ echo "**SETTING UP BASE**"
 printf '#!/bin/bash
 # Interfaces
 #NIC0
-#ifconfig enp1s0 10.0.0.1/26
-#ip route add default via 10.0.0.62 dev enp1s0
+#ifconfig eth0 10.0.3.1/24
+#ip route add default via 10.0.3.1 dev eth0
 # Mount
 #mount SRV01.vsw0:/mnt/Local/Pool-A/Files /mnt/Services/Service/Type/0/
 # Services
