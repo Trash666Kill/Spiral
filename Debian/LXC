@@ -75,8 +75,9 @@ printf '[Time]
 NTP=a.st1.ntp.br' > /etc/systemd/timesyncd.conf
 )}
 rm -v /etc/network/interfaces
-rm -v /etc/resolv.conf && touch /etc/resolv.conf
+rm -v /etc/resolv.conf
 rm -v /etc/ssh/sshd_config
+touch /etc/resolv.conf
 {(
 printf 'Include /etc/ssh/sshd_config.d/*.conf
 
