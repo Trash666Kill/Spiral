@@ -27,9 +27,9 @@ echo "**INSTALLING BASE PACKAGES**"
 echo "1"
 apt install sudo vim openssh-server sshfs nfs-common systemd-timesyncd unzip xz-utils sshpass bzip2 python3-apt screen -y
 echo "2"
-apt install htop stress hdparm tree -y
+apt install htop tree -y
 echo "3"
-apt install curl wget net-tools tcpdump traceroute iperf ethtool geoip-bin speedtest-cli nload autossh -y
+apt install curl wget net-tools tcpdump traceroute iperf ethtool nload autossh -y
 #Directories
 echo "**CREATING DIRECTORIES**"
 mkdir -pv /etc/scripts/scheduled
