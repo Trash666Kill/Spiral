@@ -50,6 +50,7 @@ chown emperor:emperor -R /home/emperor
 #Conf Base
 echo "**SETTING UP BASE**"
 systemctl disable --now systemd-resolved
+setcap cap_net_raw+p /bin/ping
 {(
 printf '#!/bin/bash
 # Interfaces
