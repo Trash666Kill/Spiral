@@ -1,16 +1,14 @@
 #!/bin/bash
-echo "Enter a password for the root user:"
-passwd root
 echo "Enter a password for the emperor user:"
 adduser emperor
-sleep 10
+sleep 5
 #Update and Upgrade
 echo "**UPDATING AND UPGRADING**"
 apt update && apt upgrade -y
 #Base packages*
 echo "**INSTALLING BASE PACKAGES**"
 echo "1"
-apt install sudo vim nfs-common net-tools systemd-timesyncd sshpass python3-apt screen -y
+apt install sudo vim nfs-common openssh-server net-tools systemd-timesyncd sshpass python3-apt screen -y
 #Directories
 echo "**CREATING DIRECTORIES**"
 mkdir -pv /etc/scripts/scheduled
@@ -21,6 +19,9 @@ mkdir -v /mnt/Temp
 mkdir -v /mnt/Services
 chown emperor:emperor -R /mnt
 mkdir -v /home/emperor/Temp
+chown emperor:emperor -R /home/emperor
+mkdir -v /home/emperor/.ssh
+mkdir -v /root/.ssh
 chown emperor:emperor -R /home/emperor
 #Conf Base
 echo "**SETTING UP BASE**"
@@ -53,6 +54,37 @@ NTP=a.st1.ntp.br' > /etc/systemd/timesyncd.conf
 rm -v /etc/network/interfaces
 rm -v /etc/resolv.conf
 touch /etc/resolv.conf
+rm -v /etc/ssh/sshd_config
+{(
+printf 'Include /etc/ssh/sshd_config.d/*.conf
+
+#Port 22
+
+PubkeyAuthentication yes
+
+ChallengeResponseAuthentication no
+
+UsePAM yes
+
+X11Forwarding yes
+PrintMotd no
+PrintLastLog no
+
+AcceptEnv LANG LC_*
+
+Subsystem       sftp    /usr/lib/openssh/sftp-server' > /etc/ssh/sshd_config
+)}
+chmod 644 /etc/ssh/sshd_config
+rm -v /etc/motd && touch /etc/motd
+chmod 700 /home/emperor/.ssh
+su - emperor -c "echo | touch /home/emperor/.ssh/authorized_keys"
+chmod 600 /home/emperor/.ssh/authorized_keys
+#su - emperor -c "echo | ssh-keygen -t rsa -b 4096 -N '' <<<$'\n'" > /dev/null 2>&1
+chmod 600 /root/.crypt
+chmod 600 /root/.ssh
+touch /root/.ssh/authorized_keys
+chmod 600 /root/.ssh/authorized_keys
+#ssh-keygen -t rsa -b 4096 -N '' <<<$'\n' > /dev/null 2>&1
 /sbin/usermod -aG sudo emperor
 #
 #Cleaning up
