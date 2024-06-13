@@ -5,7 +5,7 @@ sleep 5
 #Base packages*
 echo "**INSTALLING BASE PACKAGES**"
 echo "1"
-apt install sudo vim nfs-common openssh-server net-tools systemd-timesyncd sshpass python3-apt screen -y
+apt install sudo vim nfs-common net-tools systemd-timesyncd openssh-server sshpass python3-apt screen -y
 #Directories
 echo "**CREATING DIRECTORIES**"
 mkdir -pv /etc/scripts/scheduled
