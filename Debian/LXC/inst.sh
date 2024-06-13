@@ -2,9 +2,6 @@
 echo "Enter a password for the emperor user:"
 adduser emperor
 sleep 5
-#Update and Upgrade
-echo "**UPDATING AND UPGRADING**"
-apt update && apt upgrade -y
 #Base packages*
 echo "**INSTALLING BASE PACKAGES**"
 echo "1"
