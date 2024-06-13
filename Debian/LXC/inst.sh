@@ -50,7 +50,9 @@ NTP=a.st1.ntp.br' > /etc/systemd/timesyncd.conf
 )}
 rm -v /etc/network/interfaces
 rm -v /etc/resolv.conf
-touch /etc/resolv.conf
+{(
+printf 'nameserver 10.0.1.62' >  /etc/resolv.conf
+)}
 rm -v /etc/ssh/sshd_config
 {(
 printf 'Include /etc/ssh/sshd_config.d/*.conf
