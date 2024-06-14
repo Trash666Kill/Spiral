@@ -31,7 +31,7 @@ printf '#!/bin/bash
 # Interfaces
 #NIC0
 #ifconfig eth0 10.0.1.1/26
-#ip route add default via 10.0.1.1 dev eth0
+#ip route add default via 10.0.1.62 dev eth0
 # Mount
 #mount SRV01.vsw1:/mnt/Local/Pool-A/Files /mnt/Services/Service/Type/0/
 # Services
