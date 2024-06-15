@@ -8,17 +8,29 @@ sleep 5
 sysctl vm.swappiness=22 #=405,24MiB
 swapon /mnt/Local/Container-A/.swapfile
 # Interfaces
-ethtool -s enp2s0 wol g
-modprobe dummy
-ip link add zombie0 type dummy
-ip link set zombie0 address 52:54:00:e6:21:4c
+#VSW0
+ip tuntap add tap0 mode tap
+brctl addbr vsw0
+brctl addif vsw0 tap0
+ifconfig vsw0 up
+ifconfig vsw0 10.0.0.62 netmask 255.255.255.192 up
+#VSW1
+ip tuntap add tap1 mode tap
+brctl addbr vsw1
+brctl addif vsw1 tap1
+ifconfig vsw1 up
+ifconfig vsw1 10.0.1.62 netmask 255.255.255.192 up
 # Firewall
 sysctl -w net.ipv4.ip_forward=1
 iptables -t nat -A POSTROUTING -s 10.0.0.62/26 -o nic0 -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 10.0.1.62/26 -o nic0 -j MASQUERADE
 # Services
+systemctl restart dnsmasq
+systemctl restart lxc
+systemctl restart libvirtd
 systemctl restart smbd
-# Virtual Machines
-virsh start VM01
+systemctl restart nfs-kernel-server
+sleep 10
 # Tunnels
 sleep 60
 socat TCP-LISTEN:4533,fork TCP:10.0.0.1:4533 &
