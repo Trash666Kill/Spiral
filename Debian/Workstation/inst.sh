@@ -62,7 +62,7 @@ systemctl disable --now nfs-kernel-server
 systemctl disable --now smbd
 systemctl disable --now libvirtd
 systemctl disable --now lxc
-systemctl disable --now lxc-net
+systemctl mask lxc-net
 {(
     printf '#!/bin/sh
 #/etc/scripts/startup.sh' > /etc/rc.local
