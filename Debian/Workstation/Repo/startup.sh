@@ -30,7 +30,7 @@ systemctl restart lxc
 systemctl restart libvirtd
 #systemctl restart smbd
 #systemctl restart nfs-kernel-server
-sleep 10
+#sleep 10
 # Virtual machines
 #virsh start VM01
 # Containers
