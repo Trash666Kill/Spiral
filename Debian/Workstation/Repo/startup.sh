@@ -31,6 +31,10 @@ systemctl restart libvirtd
 #systemctl restart smbd
 #systemctl restart nfs-kernel-server
 sleep 10
+# Virtual machines
+#virsh start VM01
+# Containers
+#lxc-start --name CT01
 # Tunnels
 #sleep 60
 #socat TCP-LISTEN:4533,fork TCP:10.0.0.1:4533 &
