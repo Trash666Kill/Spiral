@@ -73,6 +73,7 @@ LXC
 # lxc-stop --name SpiralCT
 # lxc-destroy --name SpiralCT
 # lxc-attach --name SpiralCT
+# lxc-start --name SpiralCT --logfile=/var/log/lxc/SpiralCT.log --logpriority=DEBUG -c console.log
 # lxc-copy --name SpiralCT --newname CT01 --newpath=/mnt/Local/Container-B/lxc
 
 Ansible

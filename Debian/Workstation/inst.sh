@@ -35,6 +35,7 @@ echo '**CREATING DIRECTORIES**'
 mkdir -pv /etc/scripts/scheduled/virsh
 mkdir -pv /var/log/clamav/daily
 mkdir -v /var/log/virsh
+mkdir -v /var/log/lxc
 mkdir -v /var/log/rc.local
 chown $user:$user -R /var/log/rc.local
 mkdir -v /var/log/rsync
