@@ -61,9 +61,9 @@ echo '**SETTING UP BASE**'
 systemctl disable --now dnsmasq
 systemctl disable --now libvirtd
 systemctl disable --now lxc
+systemctl mask lxc-net
 systemctl disable --now nfs-kernel-server
 systemctl disable --now smbd
-systemctl mask lxc-net
 {(
     printf '#!/bin/sh
 #/etc/scripts/startup.sh' > /etc/rc.local
@@ -95,8 +95,7 @@ domain-needed
 bogus-priv
 conf-file=/usr/share/dnsmasq-base/trust-anchors.conf
 dnssec
-cache-size=1024
-' > /etc/dnsmasq.d/vsw0.conf
+cache-size=1024' > /etc/dnsmasq.d/vsw0.conf
 )}
 {(
     printf 'interface=vsw1
