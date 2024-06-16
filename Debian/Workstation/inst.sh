@@ -26,7 +26,7 @@ workstation="cryptsetup smartmontools uuid pigz passwd lm-sensors hdparm x11-xkb
 server="samba"
 graphics="nvidia-driver firmware-amd-graphics"
 firmware="firmware-misc-nonfree firmware-realtek firmware-atheros"
-hypervisor="qemu-kvm libvirt0 bridge-utils libvirt-daemon-system"
+hypervisor="lxc qemu-kvm libvirt0 bridge-utils libvirt-daemon-system"
 de="xorg xserver-xorg-input-libinput xserver-xorg-input-evdev brightnessctl xserver-xorg-input-mouse xserver-xorg-input-synaptics lightdm openbox obconf lxterminal lxpanel lxhotkey-gtk lxtask lxsession-logout lxappearance lxrandr numlockx progress arc-theme nitrogen ffmpegthumbnailer gpicview evince galculator gnome-screenshot l3afpad alacarte gpick compton pcmanfm firefox-esr engrampa gparted gnome-disk-utility baobab virt-manager ssh-askpass"
 # Environment Setting
 user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
@@ -59,6 +59,9 @@ echo '**SETTING UP BASE**'
 /sbin/usermod -aG sudo $user
 systemctl disable --now nfs-kernel-server
 systemctl disable --now smbd
+systemctl disable --now libvirtd
+systemctl disable --now lxc
+systemctl disable --now lxc-net
 {(
     printf '#!/bin/sh
 #/etc/scripts/startup.sh' > /etc/rc.local
@@ -76,6 +79,16 @@ chmod 644 /etc/ssh/sshd_config
 rm -v /etc/motd && touch /etc/motd
 {(
     printf '#/mnt/Local/Container-A 10.0.0.1(rw,sync,crossmnt,no_subtree_check,no_root_squash)' > /etc/exports
+)}
+rm -v /etc/default/lxc-net
+rm -v /etc/lxc/default.conf
+{(
+    printf 'lxc.net.0.type = veth
+lxc.net.0.link = vsw1
+lxc.net.0.flags = up
+
+lxc.apparmor.profile = generated
+lxc.apparmor.allow_nesting = 1' > /etc/lxc/default.conf
 )}
 user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
 cp -v avscan.sh /etc/scripts/scheduled; chmod +x /etc/scripts/scheduled/avscan.sh
@@ -162,7 +175,6 @@ user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
 cpu=$(lscpu | grep 'Vendor ID' | cut -f 2 -d ":" | sed -n 1p | awk '{$1=$1}1')
 gpasswd libvirt -a $user
 touch /etc/modprobe.d/kvm.conf
-virsh net-autostart default
 while true; do
 clear
 echo "**$cpu**"
@@ -213,7 +225,6 @@ user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
 cpu=$(lscpu | grep 'Vendor ID' | cut -f 2 -d ":" | sed -n 1p | awk '{$1=$1}1')
 gpasswd libvirt -a $user
 touch /etc/modprobe.d/kvm.conf
-virsh net-autostart default
 while true; do
 clear
 echo "**$cpu**"
