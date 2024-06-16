@@ -22,6 +22,7 @@ mkdir -v /root/.ssh
 chown emperor:emperor -R /home/emperor
 #Conf Base
 echo "**SETTING UP BASE**"
+systemctl disable --now dnsmasq
 systemctl disable --now systemd-networkd
 systemctl disable --now systemd-networkd.socket
 systemctl disable --now systemd-resolved
