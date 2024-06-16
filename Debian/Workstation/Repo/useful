@@ -65,6 +65,16 @@ Virsh
 # virsh domrename <VM> <new-name>
 # virsh undefine VM
 
+LXC
+# lxc-create --name SpiralCT --template download -- --dist debian --release bookworm --arch amd64
+# lxc-ls --fancy
+# lxc-info --name SpiralCT
+# lxc-start --name SpiralCT
+# lxc-stop --name SpiralCT
+# lxc-destroy --name SpiralCT
+# lxc-attach --name SpiralCT
+# lxc-copy --name SpiralCT --newname CT01 --newpath=/mnt/Local/Container-B/lxc
+
 Ansible
 $ ansible VMs -k -m ping
 $ ansible VMs -k -m shell -a "uname -a"
