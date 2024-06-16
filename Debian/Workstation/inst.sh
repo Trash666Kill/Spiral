@@ -59,10 +59,10 @@ base(){
 echo '**SETTING UP BASE**'
 /sbin/usermod -aG sudo $user
 systemctl disable --now dnsmasq
-systemctl disable --now nfs-kernel-server
-systemctl disable --now smbd
 systemctl disable --now libvirtd
 systemctl disable --now lxc
+systemctl disable --now nfs-kernel-server
+systemctl disable --now smbd
 systemctl mask lxc-net
 {(
     printf '#!/bin/sh
