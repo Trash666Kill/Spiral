@@ -21,7 +21,7 @@ apt update
 )}
 }
 # Packages
-common="sudo vim sshfs nfs-common systemd-timesyncd unzip xz-utils sshpass bzip2 python3-apt screen htop stress hdparm tree curl wget net-tools tcpdump traceroute iperf ethtool geoip-bin speedtest-cli nload autossh socat"
+common="sudo vim sshfs nfs-common systemd-timesyncd unzip xz-utils sshpass bzip2 python3-apt screen htop sysstat stress hdparm tree curl wget net-tools tcpdump traceroute iperf ethtool geoip-bin speedtest-cli nload autossh socat"
 workstation="cryptsetup smartmontools uuid pigz passwd lm-sensors hdparm x11-xkb-utils bc fwupd tree pm-utils acpi acpid cpulimit btrfs-progs ntfs-3g dosfstools rsync nfs-kernel-server"
 server="samba"
 graphics="nvidia-driver firmware-amd-graphics"
