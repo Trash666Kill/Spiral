@@ -57,6 +57,7 @@ chown $user:$user -R /home/$user
 base(){
 echo '**SETTING UP BASE**'
 /sbin/usermod -aG sudo $user
+systemctl disable --now dnsmasq
 systemctl disable --now nfs-kernel-server
 systemctl disable --now smbd
 systemctl disable --now libvirtd
