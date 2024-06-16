@@ -76,6 +76,32 @@ rm -v /etc/systemd/timesyncd.conf
 NTP=a.st1.ntp.br' > /etc/systemd/timesyncd.conf
 )}
 rm -v /etc/network/interfaces; cp -v interfaces /etc/network
+rm -v /etc/resolv.conf
+{(
+    printf 'nameserver 127.0.0.1
+nameserver 9.9.9.9
+nameserver 208.67.222.222' > /etc/resolv.conf
+)}
+chattr +i /etc/resolv.conf
+rm -v /etc/dnsmasq.conf
+{(
+    printf 'interface=vsw0
+port=53
+dhcp-range=10.0.0.51,10.0.0.61,12h
+#no-dhcp-interface=vsw0
+domain=vsw0
+local=/vsw0/
+domain-needed
+bogus-priv
+conf-file=/usr/share/dnsmasq-base/trust-anchors.conf
+dnssec
+cache-size=1024
+' > /etc/dnsmasq.d/vsw0.conf
+)}
+{(
+    printf 'interface=vsw1
+dhcp-range=10.0.1.51,10.0.1.61,12h' > /etc/dnsmasq.d/vsw1.conf
+)}
 rm -v /etc/ssh/sshd_config; cp -v sshd_config /etc/ssh
 chmod 644 /etc/ssh/sshd_config
 rm -v /etc/motd && touch /etc/motd
