@@ -11,5 +11,6 @@ xset s off &
 numlockx &
 nitrogen --restore &
 lxpanel &
-#virt-manager &
+caffeine-indicator &
+xscreensaver -no-splash &
 compton &
