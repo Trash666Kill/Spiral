@@ -27,7 +27,7 @@ server="samba"
 graphics="nvidia-driver firmware-amd-graphics"
 firmware="firmware-misc-nonfree firmware-realtek firmware-atheros"
 hypervisor="lxc qemu-kvm libvirt0 bridge-utils libvirt-daemon-system dnsmasq"
-de="xorg xserver-xorg-input-libinput xserver-xorg-input-evdev brightnessctl xserver-xorg-input-mouse xserver-xorg-input-synaptics xscreensaver lightdm openbox obconf lxterminal lxpanel lxhotkey-gtk lxtask lxsession-logout lxappearance lxrandr numlockx progress arc-theme nitrogen ffmpegthumbnailer gpicview evince galculator gnome-screenshot l3afpad alacarte gpick compton pcmanfm firefox-esr engrampa gparted gnome-disk-utility baobab virt-manager ssh-askpass"
+de="xorg xserver-xorg-input-libinput xserver-xorg-input-evdev brightnessctl xserver-xorg-input-mouse xserver-xorg-input-synaptics xscreensaver dbus-x11 lightdm openbox obconf lxterminal lxpanel lxhotkey-gtk lxtask lxsession-logout lxappearance lxrandr numlockx progress arc-theme nitrogen ffmpegthumbnailer gpicview evince galculator gnome-screenshot l3afpad alacarte gpick compton pcmanfm firefox-esr engrampa gparted gnome-disk-utility baobab virt-manager ssh-askpass"
 # Environment Setting
 user=$(grep 1000 /etc/passwd | cut -f 1 -d ":")
 directories(){
@@ -177,7 +177,7 @@ exit 0
 esac
 done
 }
-# menu
+# Menu
 while true; do
 clear
 echo '================================================
