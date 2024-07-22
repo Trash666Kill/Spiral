@@ -178,6 +178,36 @@ exit 0
 esac
 done
 }
+chassis(){
+htype=$(hostnamectl chassis)
+while true; do
+clear
+echo "**$htype**"
+case "$htype" in
+laptop)
+printf 'Section "InputClass"
+        Identifier "libinput touchpad catchall"
+        MatchIsTouchpad "on"
+        MatchDevicePath "/dev/input/event*"
+        Driver "libinput"
+        Option "Tapping" "on"
+EndSection' > /etc/X11/xorg.conf.d/40-libinput.conf
+printf '[D-BUS Service]
+Name=org.freedesktop.Notifications
+Exec=/usr/lib/notification-daemon/notification-daemon' > /usr/share/dbus-1/services/org.freedesktop.Notifications.service
+sleep 3
+echo 'Finished
+================================================'
+sleep 3
+;;
+desktop)
+sleep 3
+echo 'Finished
+================================================'
+sleep 3
+esac
+done
+}
 # Menu
 while true; do
 clear
@@ -219,6 +249,7 @@ echo 'options kvm_intel nested=1' >> /etc/modprobe.d/kvm.conf
 /sbin/modprobe kvm_intel
 sleep 3
 de
+chassis
 echo 'Finished
 ================================================'
 sleep 3
@@ -231,6 +262,7 @@ echo 'options kvm_amd nested=1' >> /etc/modprobe.d/kvm.conf
 /sbin/modprobe kvm_amd nested=1
 sleep 3
 de
+chassis
 echo 'Finished
 ================================================'
 sleep 3
