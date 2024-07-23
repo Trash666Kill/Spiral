@@ -5,8 +5,8 @@
 #xrandr --output DP-2 --rotate left
 #xrandr --output HDMI-2 --same-as HDMI-1
 # Always on
-xset -dpms &
-xset s off &
+#xset -dpms &
+#xset s off &
 #
 numlockx &
 nitrogen --restore &
