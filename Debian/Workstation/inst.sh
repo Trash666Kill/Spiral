@@ -196,15 +196,11 @@ printf '[D-BUS Service]
 Name=org.freedesktop.Notifications
 Exec=/usr/lib/notification-daemon/notification-daemon' > /usr/share/dbus-1/services/org.freedesktop.Notifications.service
 sleep 3
-echo 'Finished
-================================================'
-sleep 3
+exit 0
 ;;
 desktop)
 sleep 3
-echo 'Finished
-================================================'
-sleep 3
+exit 0
 esac
 done
 }
