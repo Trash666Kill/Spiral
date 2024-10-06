@@ -30,8 +30,8 @@ setcap cap_net_raw+p /bin/ping
 printf '#!/bin/bash
 # Interfaces
 #NIC0
-#ifconfig eth0 10.0.1.1/26
-#ip route add default via 10.0.1.62 dev eth0
+#ifconfig eth0 10.0.20.1/26
+#ip route add default via 10.0.20.254 dev eth0
 # Mount
 #mount SRV01.vsw1:/mnt/Local/Pool-A/Files /mnt/Services/Service/Type/0/
 # Services
@@ -55,7 +55,7 @@ NTP=a.st1.ntp.br' > /etc/systemd/timesyncd.conf
 rm -v /etc/network/interfaces
 rm -v /etc/resolv.conf
 {(
-printf 'nameserver 10.0.1.62' >  /etc/resolv.conf
+printf 'nameserver 10.0.20.1' >  /etc/resolv.conf
 )}
 rm -v /etc/ssh/sshd_config
 {(
