@@ -30,7 +30,7 @@ setcap cap_net_raw+p /bin/ping
 printf '#!/bin/bash
 # Interfaces
 #NIC0
-#ifconfig eth0 10.0.20.1/26
+#ifconfig eth0 10.0.20.1/24
 #ip route add default via 10.0.20.254 dev eth0
 # Mount
 #mount SRV01.vsw1:/mnt/Local/Pool-A/Files /mnt/Services/Service/Type/0/
