@@ -66,7 +66,7 @@ systemctl disable --now nfs-kernel-server
 systemctl disable --now smbd
 {(
     printf '#!/bin/sh
-/etc/scripts/startup.sh' > /etc/rc.local
+#/etc/scripts/startup.sh' > /etc/rc.local
 )}
 chmod 755 /etc/rc.local
 cp -v startup.sh /etc/scripts; chmod +x /etc/scripts/startup.sh
@@ -77,28 +77,25 @@ NTP=a.st1.ntp.br' > /etc/systemd/timesyncd.conf
 )}
 rm -v /etc/network/interfaces; cp -v interfaces /etc/network
 rm -v /etc/resolv.conf
-mkdir -v /etc/dnsmasq.d/config
 {(
     printf 'nameserver 127.0.0.1
 nameserver 9.9.9.9
-nameserver 208.67.222.222' > /etc/dnsmasq.d/config/resolv
+nameserver 208.67.222.222' > /etc/resolv.conf
 )}
+chattr +i /etc/resolv.conf
 rm -v /etc/dnsmasq.conf
 {(
-    printf 'interface=kvm_vsw0_tap0
+    printf 'interface=vsw0
 port=53
-dhcp-range=10.0.10.243,10.0.10.253,12h
-#no-dhcp-interface=kvm_vsw0_tap0
-domain=kvm_vsw0_tap0
-local=/kvm_vsw0_tap0/
-no-hosts
+dhcp-range=10.0.0.51,10.0.0.61,12h
+#no-dhcp-interface=vsw0
+domain=vsw0
+local=/vsw0/
 domain-needed
 bogus-priv
-dnssec
-cache-size=1024
 conf-file=/usr/share/dnsmasq-base/trust-anchors.conf
-resolv-file=/etc/dnsmasq.d/config/resolv
-addn-hosts=/etc/dnsmasq.d/config/hosts' > /etc/dnsmasq.d/kvm_vsw0_tap0.conf
+dnssec
+cache-size=1024' > /etc/dnsmasq.d/vsw0.conf
 )}
 {(
     printf 'interface=vsw1
