@@ -4,16 +4,6 @@ source /etc/network/interfaces.d/*
 auto lo
 iface lo inet loopback
 
-# Virtual network interface
-allow-hotplug enp1s0
-iface enp1s0 inet dhcp
-
-# Wireless
-#auto wlan0
-#iface wlan0 inet dhcp
-#wpa-ssid myssid
-#wpa-psk a1b2c3d4e5
-
 # DHCP
 #allow-hotplug enp1s0
 #iface enp1s0 inet dhcp
@@ -32,17 +22,8 @@ iface enp1s0 inet dhcp
 #address 192.168.4.10/24
 #gateway 192.168.4.4
 
-# Bridge DHCP
-#auto benp1s0
-#iface benp1s0 inet dhcp
-#bridge_ports enp1s0
-#bridge_hw enp1s0
-#bridge_stp on
-#bridge_fd 0.0
-
-# VSW0
-#auto vsw0
-#iface vsw0 inet static
-#bridge_ports zombie0
-#bridge_hw zombie0
-#address 10.0.0.62/26
+# Wireless
+#auto wlan0
+#iface wlan0 inet dhcp
+#wpa-ssid myssid
+#wpa-psk a1b2c3d4e5
