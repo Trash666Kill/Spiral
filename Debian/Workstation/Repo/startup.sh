@@ -8,22 +8,22 @@
 #sysctl vm.swappiness=22 #=405,24MiB
 #swapon /mnt/Local/Container-A/.swapfile
 # Interfaces
-#VSW0
+#kvm_vsw0_tap0
 ip tuntap add tap0 mode tap
-brctl addbr vsw0
-brctl addif vsw0 tap0
-ifconfig vsw0 up
-ifconfig vsw0 10.0.0.62 netmask 255.255.255.192 up
-#VSW1
+brctl addbr kvm_vsw0_tap0
+brctl addif kvm_vsw0_tap0 tap0
+ifconfig kvm_vsw0_tap0 up
+ifconfig kvm_vsw0_tap0 10.0.10.254 netmask 255.255.255.0 up
+#lxc_vsw0_tap1
 ip tuntap add tap1 mode tap
-brctl addbr vsw1
-brctl addif vsw1 tap1
-ifconfig vsw1 up
-ifconfig vsw1 10.0.1.62 netmask 255.255.255.192 up
+brctl addbr lxc_vsw0_tap1
+brctl addif lxc_vsw0_tap1 tap1
+ifconfig lxc_vsw0_tap1 up
+ifconfig lxc_vsw0_tap1 10.0.20.254 netmask 255.255.255.0 up
 # Firewall
 sysctl -w net.ipv4.ip_forward=1
-iptables -t nat -A POSTROUTING -s 10.0.0.62/26 -o nic0 -j MASQUERADE
-iptables -t nat -A POSTROUTING -s 10.0.1.62/26 -o nic0 -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 10.0.10.254/24 -o enp1s0 -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 10.0.20.254/24 -o enp1s0 -j MASQUERADE
 # Services
 systemctl restart dnsmasq
 systemctl restart lxc
