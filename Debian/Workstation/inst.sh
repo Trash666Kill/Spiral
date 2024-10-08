@@ -77,12 +77,10 @@ NTP=a.st1.ntp.br' > /etc/systemd/timesyncd.conf
 )}
 rm -v /etc/network/interfaces; cp -v interfaces /etc/network
 rm -v /etc/resolv.conf
-mkdir -v /etc/dnsmasq.d/config
 {(
-    printf 'nameserver 127.0.0.1
-nameserver 9.9.9.9
-nameserver 208.67.222.222' > /etc/dnsmasq.d/config/resolv
+    printf 'nameserver 10.0.10.254' > /etc/resolv.conf
 )}
+chattr +i /etc/resolv.conf
 rm -v /etc/dnsmasq.conf
 {(
     printf 'interface=kvm_vsw0_tap0
@@ -104,6 +102,16 @@ addn-hosts=/etc/dnsmasq.d/config/hosts' > /etc/dnsmasq.d/kvm_vsw0_tap0.conf
     printf 'interface=lxc_vsw0_tap1
 dhcp-range=10.0.20.243,10.0.20.253,12h' > /etc/dnsmasq.d/lxc_vsw0_tap1.conf
 )}
+mkdir -v /etc/dnsmasq.d/config
+{(
+    printf 'nameserver 127.0.0.1
+nameserver 9.9.9.9
+nameserver 208.67.222.222' > /etc/dnsmasq.d/config/resolv
+)}
+{(
+    printf "10.0.10.254 %s.kvm_vsw0_tap0\n" "$(hostname)"
+    printf "10.0.20.254 %s.lxc_vsw0_tap1\n" "$(hostname)"
+)} > /etc/dnsmasq.d/config/hosts
 rm -v /etc/ssh/sshd_config; cp -v sshd_config /etc/ssh
 chmod 644 /etc/ssh/sshd_config
 rm -v /etc/motd && touch /etc/motd
