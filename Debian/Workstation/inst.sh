@@ -101,8 +101,8 @@ resolv-file=/etc/dnsmasq.d/config/resolv
 addn-hosts=/etc/dnsmasq.d/config/hosts' > /etc/dnsmasq.d/kvm_vsw0_tap0.conf
 )}
 {(
-    printf 'interface=vsw1
-dhcp-range=10.0.1.51,10.0.1.61,12h' > /etc/dnsmasq.d/vsw1.conf
+    printf 'interface=lxc_vsw0_tap1
+dhcp-range=10.0.20.243,10.0.20.253,12h' > /etc/dnsmasq.d/lxc_vsw0_tap1.conf
 )}
 rm -v /etc/ssh/sshd_config; cp -v sshd_config /etc/ssh
 chmod 644 /etc/ssh/sshd_config
@@ -114,7 +114,7 @@ rm -v /etc/default/lxc-net
 rm -v /etc/lxc/default.conf
 {(
     printf 'lxc.net.0.type = veth
-lxc.net.0.link = vsw1
+lxc.net.0.link = lxc_vsw0_tap1
 lxc.net.0.flags = up
 
 lxc.apparmor.profile = generated
