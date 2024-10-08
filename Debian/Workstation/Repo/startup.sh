@@ -37,8 +37,8 @@ systemctl restart libvirtd
 #lxc-start --name CT01
 # Tunnels
 #sleep 60
-#socat TCP-LISTEN:4533,fork TCP:10.0.0.1:4533 &
+#socat TCP-LISTEN:5900,fork TCP:10.0.10.1:5900 &
 #sleep 15
 #(
-#ssh -f -N -T -R 2222:localhost:26 -p 4634 emperor@strychnine.duckdns.org -o StrictHostKeyChecking=false &
+#autossh -M 0 -f -N -T -R 2222:localhost:26 -R 5900:10.0.10.1:5900 -p 4635 emperor@shorting.com.br -o StrictHostKeyChecking=false -o ServerAliveInterval=60 &
 #)
