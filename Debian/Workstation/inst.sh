@@ -100,7 +100,8 @@ addn-hosts=/etc/dnsmasq.d/config/hosts' > /etc/dnsmasq.d/kvm_vsw0_tap0.conf
 )}
 {(
     printf 'interface=lxc_vsw0_tap1
-dhcp-range=10.0.20.243,10.0.20.253,12h' > /etc/dnsmasq.d/lxc_vsw0_tap1.conf
+dhcp-range=10.0.20.243,10.0.20.253,12h
+domain=lxc_vsw0_tap1' > /etc/dnsmasq.d/lxc_vsw0_tap1.conf
 )}
 mkdir -v /etc/dnsmasq.d/config
 {(
