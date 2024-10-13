@@ -1,0 +1,29 @@
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# DHCP
+#allow-hotplug enp1s0
+#iface enp1s0 inet dhcp
+
+# Static
+#auto enp1s0
+#iface enp1s0 inet static
+#address 192.168.4.10/24
+#gateway 192.168.4.4
+
+# Bridge static
+#auto benp1s0
+#iface benp1s0 inet static
+#bridge_ports enp1s0
+#bridge_hw enp1s0
+#address 192.168.4.10/24
+#gateway 192.168.4.4
+
+# Wireless
+#auto wlan0
+#iface wlan0 inet dhcp
+#wpa-ssid myssid
+#wpa-psk a1b2c3d4e5
