@@ -3,7 +3,7 @@ cd $PWD/Repo
 # SO Repositore
 repo(){
 echo '**ADDING NON-FREE REPOSITORIES**'
-rm -v /etc/apt/sources.list
+rm -v /etc/apt/sources.lists
 {(
 printf '#
 deb http://deb.debian.org/debian/ bookworm main non-free non-free-firmware
