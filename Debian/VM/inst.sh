@@ -60,8 +60,8 @@ update-grub
 printf '#!/bin/bash
 # Interfaces
 #NIC0
-#ifconfig enp1s0 10.0.0.1/26
-#ip route add default via 10.0.0.62 dev enp1s0
+#ifconfig enp1s0 10.0.10.1/24
+#ip route add default via 10.0.10.254 dev enp1s0
 # Mount
 #mount SRV01.vsw0:/mnt/Local/Pool-A/Files /mnt/Services/Service/Type/0/
 # Services
@@ -71,7 +71,7 @@ printf '#!/bin/bash
 chmod +x /etc/scripts/startup.sh
 {(
 printf '#!/bin/sh
-#/etc/scripts/startup.sh
+/etc/scripts/startup.sh
 #' > /etc/rc.local
 )}
 chmod 755 /etc/rc.local
